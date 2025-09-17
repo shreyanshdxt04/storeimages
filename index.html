@@ -1,35 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stellar Gems - Luxury Jewelry</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Anandsneh Jewellers - A Legacy of Trust</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght=300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
             color: #1a1a1a;
             background-color: #f5f5f5;
+            overflow-x: hidden;
         }
 
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Playfair Display', serif;
         }
 
-        /* Custom scrollbar for horizontal sections */
+        /* --- Custom Scrollbar for horizontal sections (Hidden) --- */
         .scrolling-container::-webkit-scrollbar {
-            height: 8px;
+            display: none;
         }
 
-        .scrolling-container::-webkit-scrollbar-thumb {
-            background-color: #d4d4d4;
-            border-radius: 4px;
+        .scrolling-container {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
-
-        .scrolling-container::-webkit-scrollbar-track {
-            background-color: #f1f1f1;
-        }
+        /* -------------------------------------------------------- */
 
         /* Silk background texture effect */
         .silk-texture-bg {
@@ -305,7 +303,7 @@
         .button {
             height: 50px;
             width: 200px;
-            position: relative;
+            position: relative; /* Added position:relative to fix hover issue */
             background-color: transparent;
             cursor: pointer;
             border: 2px solid #fff;
@@ -482,14 +480,6 @@
             letter-spacing: 1.5px;
         }
 
-        .glass-nav-item:hover::before {
-            left: 100%;
-        }
-
-        .glass-nav-item:hover::after {
-            opacity: 1;
-        }
-
         .glass-nav-item:active {
             transform: translateY(1px) scale(0.98);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.15);
@@ -642,6 +632,8 @@
             background-position: center;
             transition: opacity 1s ease-in-out;
             opacity: 0;
+            /* Parallax effect */
+            background-attachment: fixed;
         }
 
         .carousel-slide.active {
@@ -658,6 +650,12 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            /* Allow mouse events to pass through wrapper, but not its children */
+            pointer-events: none;
+        }
+        
+        .carousel-content-wrapper > * {
+            pointer-events: auto; /* Re-enable pointer events for content inside */
         }
 
         .carousel-content {
@@ -682,14 +680,6 @@
         }
         .carousel-arrow:hover {
             background: rgba(0, 0, 0, 0.8);
-        }
-
-        .carousel-arrow.left {
-            left: 20px;
-        }
-
-        .carousel-arrow.right {
-            right: 20px;
         }
 
         .carousel-indicators {
@@ -718,9 +708,15 @@
             display: block;
             object-fit: cover;
         }
+
+        .explore-more-btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body>
 
     <!-- Loading Screen -->
     <div id="loading-screen">
@@ -746,15 +742,6 @@
                 <li><a href="#about-us" class="glass-nav-item"><span>About Us</span></a></li>
                 <li><a href="#contact-us" class="glass-nav-item"><span>Contact Us</span></a></li>
             </ul>
-
-            <!-- Cart Icon (Right) -->
-            <!-- <div class="flex items-center space-x-4 text-white">
-                <a href="#" class="hover:text-gray-300 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                    </svg>
-                </a>
-            </div> -->
             
             <!-- Mobile Menu Button -->
             <button id="mobile-menu-btn" class="md:hidden text-white">
@@ -775,61 +762,15 @@
 
     <!-- Hero Section with Carousel -->
     <section id="hero-section" class="hero-carousel">
-        <!-- Carousel Slides -->
+        <!-- Carousel Slides with Parallax effect -->
         <div class="carousel-slide active" style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/storeimages/6d701bd62a67873039d0dfae8ad909ff5f1460a7/Gemini_Generated_Image_3j44s33j44s33j44.png');">
-            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+            <div class="absolute inset-0 bg-black bg-opacity-40" style="pointer-events: none;"></div>
             <div class="carousel-content-wrapper fade-in-section">
                 <div class="carousel-content p-6 lg:p-12 space-y-6">
                     <h1 class="text-4xl md:text-6xl font-serif font-light tracking-wide">Discover Your Sparkle</h1>
                     <p class="text-sm md:text-lg font-light max-w-2xl mx-auto">Experience the brilliance of jewelry and find the perfect piece for your special moments.</p>
-                    <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 pt-4">
-                        <a href="#mens-rings" class="shop-now-button">
-                            Customise
-                            <svg viewBox="0 0 24 24" class="star-1 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
-                            <svg viewBox="0 0 24 24" class="star-2 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
-                            <svg viewBox="0 0 24 24" class="star-3 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
-                            <svg viewBox="0 0 24 24" class="star-4 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
-                            <svg viewBox="0 0 24 24" class="star-5 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
-                            <svg viewBox="0 0 24 24" class="star-6 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
-                        </a>
-                        <a href="#about-us" class="button type1">
-                            <div class="btn-txt">Create Visual</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-slide" style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/storeimages/ac718d8c9c4450c1d406e623045df604e47e7ed1/1758057288803.jpg');">
-            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-            <div class="carousel-content-wrapper fade-in-section">
-                <div class="carousel-content p-6 lg:p-12 space-y-6">
-                    <h1 class="text-4xl md:text-6xl font-serif font-light tracking-wide">Timeless Elegance</h1>
-                    <p class="text-sm md:text-lg font-light max-w-2xl mx-auto">Our heritage is crafted into every piece. Discover the legacy of our master jewelers.</p>
-                    <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 pt-4">
-                        <a href="#customization" class="shop-now-button">
-                            Our Story
-                            <svg viewBox="0 0 24 24" class="star-1 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
-                            <svg viewBox="0 0 24 24" class="star-2 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
-                            <svg viewBox="0 0 24 24" class="star-3 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
-                            <svg viewBox="0 0 24 24" class="star-4 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
-                            <svg viewBox="0 0 24 24" class="star-5 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
-                            <svg viewBox="0 0 24 24" class="star-6 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
-                        </a>
-                        <a href="#customization" class="button type1">
-                            <div class="btn-txt">Contact Us</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-slide" style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/storeimages/ac718d8c9c4450c1d406e623045df604e47e7ed1/1758057846614.jpg');">
-            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-            <div class="carousel-content-wrapper fade-in-section">
-                <div class="carousel-content p-6 lg:p-12 space-y-6">
-                    <h1 class="text-4xl md:text-6xl font-serif font-light tracking-wide">Crafted for You</h1>
-                    <p class="text-sm md:text-lg font-light max-w-2xl mx-auto">Bring your vision to life with our customization services. Design a piece as unique as you are.</p>
-                    <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 pt-4">
-                        <a href="#customization" class="shop-now-button">
+                    <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 pt-4 relative z-20"> <!-- Fixed hover effect with z-index -->
+                        <a href="#mens-rings" class="shop-now-button scroll-to-link" style="pointer-events: auto;">
                             Shop Now
                             <svg viewBox="0 0 24 24" class="star-1 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
                             <svg viewBox="0 0 24 24" class="star-2 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
@@ -838,8 +779,54 @@
                             <svg viewBox="0 0 24 24" class="star-5 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
                             <svg viewBox="0 0 24 24" class="star-6 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
                         </a>
-                        <a href="#ai-visualizer" class="button type1">
-                            <div class="btn-txt">Create Visual</div>
+                        <a href="#categories" class="button type1 scroll-to-link" style="pointer-events: auto;">
+                            <div class="btn-txt">Explore</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-slide" style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/storeimages/ac718d8c9c4450c1d406e623045df604e47e7ed1/1758057288803.jpg');">
+            <div class="absolute inset-0 bg-black bg-opacity-40" style="pointer-events: none;"></div>
+            <div class="carousel-content-wrapper fade-in-section">
+                <div class="carousel-content p-6 lg:p-12 space-y-6">
+                    <h1 class="text-4xl md:text-6xl font-serif font-light tracking-wide">Timeless Elegance</h1>
+                    <p class="text-sm md:text-lg font-light max-w-2xl mx-auto">Our heritage is crafted into every piece. Discover the legacy of our master jewelers.</p>
+                    <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 pt-4 relative z-20"> <!-- Fixed hover effect with z-index -->
+                        <a href="#mens-rings" class="shop-now-button scroll-to-link" style="pointer-events: auto;">
+                            Shop Now
+                            <svg viewBox="0 0 24 24" class="star-1 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
+                            <svg viewBox="0 0 24 24" class="star-2 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
+                            <svg viewBox="0 0 24 24" class="star-3 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
+                            <svg viewBox="0 0 24 24" class="star-4 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
+                            <svg viewBox="0 0 24 24" class="star-5 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
+                            <svg viewBox="0 0 24 24" class="star-6 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
+                        </a>
+                        <a href="#categories" class="button type1 scroll-to-link" style="pointer-events: auto;">
+                            <div class="btn-txt">Explore</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-slide" style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/storeimages/ac718d8c9c4450c1d406e623045df604e47e7ed1/1758057846614.jpg');">
+            <div class="absolute inset-0 bg-black bg-opacity-40" style="pointer-events: none;"></div>
+            <div class="carousel-content-wrapper fade-in-section">
+                <div class="carousel-content p-6 lg:p-12 space-y-6">
+                    <h1 class="text-4xl md:text-6xl font-serif font-light tracking-wide">Crafted for You</h1>
+                    <p class="text-sm md:text-lg font-light max-w-2xl mx-auto">Bring your vision to life with our customization services. Design a piece as unique as you are.</p>
+                    <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 pt-4 relative z-20"> <!-- Fixed hover effect with z-index -->
+                        <a href="#mens-rings" class="shop-now-button scroll-to-link" style="pointer-events: auto;">
+                            Shop Now
+                            <svg viewBox="0 0 24 24" class="star-1 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
+                            <svg viewBox="0 0 24 24" class="star-2 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
+                            <svg viewBox="0 0 24 24" class="star-3 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
+                            <svg viewBox="0 0 24 24" class="star-4 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
+                            <svg viewBox="0 0 24 24" class="star-5 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
+                            <svg viewBox="0 0 24 24" class="star-6 star"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zM12 20c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" class="fil0"></path></svg>
+                        </a>
+                        <a href="#categories" class="button type1 scroll-to-link" style="pointer-events: auto;">
+                            <div class="btn-txt">Explore</div>
                         </a>
                     </div>
                 </div>
@@ -943,10 +930,12 @@
                         At Anandsneh Jewellers, we believe jewellery should be a true reflection of personal style and elegance. Our luxurious, modern designs are a blend of high-quality craftsmanship and ethical sourcing, ensuring that each piece not only looks stunning but is also responsibly made. We pride ourselves on celebrating individuality while forming meaningful connections with our valued customers.
                     </p>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-517237166-612x612.jpg" alt="A family shopping for jewelry" class="rounded-lg shadow-lg col-span-1 row-span-2 self-start" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Family+Shopping'">
+                <!-- New Image Grid for About Us -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-517237166-612x612.jpg" alt="A family shopping for jewelry" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Family+Shopping'">
                     <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-691898268-612x612.jpg" alt="A craftsman working on jewelry" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Craftsman'">
                     <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-1427466115-612x612.jpg" alt="A woman wearing a necklace" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Woman+Wearing+Jewelry'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/segal-jewelry-NsH-CvU0deg-unsplash.jpg" alt="Editorial Shot 1" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Editorial+Shot+1'">
                 </div>
             </div>
         </div>
@@ -1016,8 +1005,8 @@
                         </div>
                         <div class="card__footer">
                              <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
+                                 <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                             </a>
                         </div>
                     </div>
                 </div>
@@ -1052,8 +1041,8 @@
                         </div>
                         <div class="card__footer">
                              <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
+                                 <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                             </a>
                         </div>
                     </div>
                 </div>
@@ -1069,28 +1058,16 @@
                         </div>
                         <div class="card__footer">
                              <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
+                                 <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="card" onclick="showProductDetails('The Twirled Wonder Ring')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div class="card__badge bg-stone-500">NEW</div>
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/475ed56dede65af715f7b7d05eb97f128b5f6491/The%20Twirled%20Wonder%20Ring.jpg')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Twirled Wonder Ring</p>
-                            <p class="card__description text-gray-500">Exquisite diamond design</p>
-                        </div>
-                        <div class="card__footer">
-                             <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            </div>
+            <div class="explore-more-btn-container">
+                <a href="#" class="button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white">
+                    <div class="btn-txt">Explore More</div>
+                </a>
             </div>
         </div>
     </section>
@@ -1109,13 +1086,13 @@
                         <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/ed31d4388671e40ceb2ab6dd8da70aa95d37cf6c/The%20Flutter%20And%20Floral%20Kids%20Necklace__.webp')" class="card__image"></div>
                         <div class="card__text">
                             <p class="card__title">The Flutter And Floral Kids Necklace</p>
-                            <p class="card__description text-gray-500">Exquisite diamond design</p>
+                            <p class="class="card__description text-gray-500">Exquisite diamond design</p>
                         </div>
                         <div class="card__footer">
                             <div class="card__price text-gray-900">₹28,780</div>
                              <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
+                                 <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                             </a>
                         </div>
                     </div>
                 </div>
@@ -1175,40 +1152,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" onclick="showProductDetails('The Nicole Necklace')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/e88bacc19472d65068fc7cd2cb29ea1d948da3e7/The%20Nicole%20Necklace__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Nicole Necklace</p>
-                            <p class="card__description text-gray-500">Elegant and sophisticated</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">₹2,26,923</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card" onclick="showProductDetails('The Kalka Necklace')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/ae504c5f65a3eb437cb70c6f327bf2e30813eb3e/The%20Kalka%20Necklace__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Kalka Necklace</p>
-                            <p class="card__description text-gray-500">A striking and intricate design</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">₹1,41,386</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            </div>
+            <div class="explore-more-btn-container">
+                <a href="#" class="button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white">
+                    <div class="btn-txt">Explore More</div>
+                </a>
             </div>
         </div>
     </section>
@@ -1273,9 +1221,14 @@
                     </div>
                 </div>
             </div>
+            <div class="explore-more-btn-container">
+                <a href="#" class="button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white">
+                    <div class="btn-txt">Explore More</div>
+                </a>
+            </div>
         </div>
     </section>
-    
+
     <!-- Rings Section -->
     <section id="rings" class="py-20 bg-white">
         <div class="container mx-auto px-4 lg:px-8">
@@ -1352,23 +1305,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" onclick="showProductDetails('The Exalt Bypass Ring')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/4e75fa0888f7c789f29aeb23a931eb51a2d196e9/The%20Exalt%20Bypass%20Ring__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Exalt Bypass Ring</p>
-                            <p class="card__description text-gray-500">Exquisite diamond design</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            </div>
+            <div class="explore-more-btn-container">
+                <a href="#" class="button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white">
+                    <div class="btn-txt">Explore More</div>
+                </a>
             </div>
         </div>
     </section>
@@ -1433,6 +1374,11 @@
                     </div>
                 </div>
             </div>
+            <div class="explore-more-btn-container">
+                <a href="#" class="button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white">
+                    <div class="btn-txt">Explore More</div>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -1495,6 +1441,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="explore-more-btn-container">
+                <a href="#" class="button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white">
+                    <div class="btn-txt">Explore More</div>
+                </a>
             </div>
         </div>
     </section>
@@ -1559,6 +1510,11 @@
                     </div>
                 </div>
             </div>
+            <div class="explore-more-btn-container">
+                <a href="#" class="button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white">
+                    <div class="btn-txt">Explore More</div>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -1621,6 +1577,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="explore-more-btn-container">
+                <a href="#" class="button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white">
+                    <div class="btn-txt">Explore More</div>
+                </a>
             </div>
         </div>
     </section>
@@ -1685,6 +1646,11 @@
                     </div>
                 </div>
             </div>
+            <div class="explore-more-btn-container">
+                <a href="#" class="button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white">
+                    <div class="btn-txt">Explore More</div>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -1694,14 +1660,14 @@
             <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Get the best diamonds for your business</h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/segal-jewelry-NsH-CvU0deg-unsplash.jpg" alt="Editorial Shot 1" class="w-full md:w-1/2 h-auto rounded-lg shadow-lg" onerror="this.src='https://placehold.co/600x800/262626/ffffff?text=Editorial+Shot+1'">
-                    <img src="https://placehold.co/600x800/262626/ffffff?text=Editorial+Shot+2" alt="Editorial Shot 2" class="w-full md:w-1/2 h-auto rounded-lg shadow-lg">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/30fe52448b82f8ca978ad2e74d762510cfd7f2ba/diamond%20jwellry.jpg" alt="A collection of elegant diamond jewelry on display" class="w-full md:w-1/2 h-auto rounded-lg shadow-lg" onerror="this.src='https://placehold.co/600x800/262626/ffffff?text=Diamond+Jewelry'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/30fe52448b82f8ca978ad2e74d762510cfd7f2ba/istockphoto-136508442-612x612.jpg" alt="A close-up shot of a diamond ring" class="w-full md:w-1/2 h-auto rounded-lg shadow-lg" onerror="this.src='https://placehold.co/600x800/262626/ffffff?text=Diamond+Ring'">
                 </div>
                 <div class="text-center lg:text-left space-y-6">
                     <p class="text-sm md:text-base leading-relaxed max-w-lg mx-auto lg:mx-0">
                         We have been working with the most exquisite stones for decades, ensuring a high-end experience for your business. Our team of expert gemologists and designers are ready to help you create your next collection.
                     </p>
-                    <a href="#mens-rings" class="button type1">
+                    <a href="#mens-rings" class="button type1 scroll-to-link">
                         <div class="btn-txt">More Products</div>
                     </a>
                 </div>
@@ -1713,17 +1679,19 @@
     <section id="legacy-section" class="py-20 bg-white">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="grid grid-cols-2 gap-4">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-517237166-612x612.jpg" alt="A family shopping for jewelry" class="rounded-lg shadow-lg col-span-1 row-span-2 self-start" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Family+Shopping'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-691898268-612x612.jpg" alt="A craftsman working on jewelry" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Craftsman'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-1427466115-612x612.jpg" alt="A woman wearing a necklace" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Woman+Wearing+Jewelry'">
+                <!-- New Image Grid for Legacy Section -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-1311987356-612x612.jpg" alt="Woman's hand wearing a delicate gold bracelet" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+1'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-1318824089-612x612.jpg" alt="Couple's hands with wedding rings" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+2'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-2148666112-640x640.jpg" alt="A hand with an elegant diamond ring" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+3'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-617896650-612x612.jpg" alt="Jewelry craftsman working at a bench" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+4'">
                 </div>
                 <div class="text-center lg:text-left space-y-6">
                     <h2 class="text-2xl md:text-3xl font-serif">Crafting Jewellery Since 1929</h2>
                     <p class="text-sm md:text-base leading-relaxed max-w-lg mx-auto lg:mx-0">
                         For generations, our master craftsmen have dedicated themselves to the art of fine jewelry. We combine timeless traditions with modern design to create pieces that are not just beautiful, but are also heirlooms for the future.
                     </p>
-                    <a href="#mens-rings" class="button type1">
+                    <a href="#mens-rings" class="button type1 scroll-to-link">
                         <div class="btn-txt">More Products</div>
                     </a>
                 </div>
@@ -2011,6 +1979,7 @@
             observer.observe(section);
         });
 
+        // Get elements for AI functionality
         const productModal = document.getElementById('productModal');
         const productModalTitle = document.getElementById('productModalTitle');
         const productModalContent = document.getElementById('productModalContent');
@@ -2027,6 +1996,24 @@
         const imageLoading = document.getElementById('imageLoading');
         const generatedImage = document.getElementById('generatedImage');
         const shareImageBtn = document.getElementById('shareImageBtn');
+        const smoothScrollLinks = document.querySelectorAll('.scroll-to-link');
+
+        // Add smooth scrolling to all links with the 'scroll-to-link' class
+        smoothScrollLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
 
         // Function to close any modal
         function closeModal(modalId) {
@@ -2059,7 +2046,7 @@
             };
 
             try {
-                let response = await fetch(apiUrl, {
+                const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
@@ -2115,7 +2102,7 @@
             };
 
             try {
-                let response = await fetch(apiUrl, {
+                const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
@@ -2145,7 +2132,7 @@
 
             const prompt = document.getElementById('imagePrompt').value;
             const style = document.getElementById('imageStyle').value;
-            const fullPrompt = `${style} of a high-end jewelry piece: ${prompt}`;
+            const fullPrompt = `professional product photography of a high-end jewelry piece, on a black background, with studio lighting, showcasing intricate details: a ${prompt}`;
             
             const apiKey = "";
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${apiKey}`;
