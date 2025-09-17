@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anandsneh Jewellers - All Products</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1a1a1a;
+            background-color: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Card Styling from Uiverse.io with modifications for color scheme */
+        .card {
+            --card-bg: #ffffff;
+            --card-accent: #1e293b;
+            --card-text: #1e293b;
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            height: 400px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            position: relative;
+            color: var(--card-text);
+            cursor: pointer;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-family: 'Inter', sans-serif;
+            transition: 400ms;
+        }
+
+        .card:hover {
+            transform: scale(1.05, 1.05);
+        }
+
+        .card__shine {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                120deg,
+                rgba(255, 255, 255, 0) 40%,
+                rgba(255, 255, 255, 0.8) 50%,
+                rgba(255, 255, 255, 0) 60%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .card:hover .card__shine {
+            opacity: 1;
+            animation: shine 3s infinite;
+        }
+
+        .card__glow {
+            position: absolute;
+            inset: -10px;
+            background: radial-gradient(
+                circle at 50% 0%,
+                rgba(0, 0, 0, 0.3) 0%,
+                rgba(0, 0, 0, 0) 70%
+            );
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .card:hover .card__glow {
+            opacity: 1;
+        }
+
+        .card__content {
+            padding: 1.25em;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75em;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        .card__badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #10b981;
+            color: white;
+            padding: 0.25em 0.5em;
+            border-radius: 999px;
+            font-size: 0.7em;
+            font-weight: 600;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.4s ease 0.1s;
+        }
+
+        .card:hover .card__badge {
+            transform: scale(1);
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .card__image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #a78bfa, #8b5cf6);
+            border-radius: 12px;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .card:hover .card__image {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card__image::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(
+                circle at 30% 30%,
+                rgba(255, 255, 255, 0.1) 0%,
+                transparent 30%
+            ),
+            repeating-linear-gradient(
+                45deg,
+                rgba(139, 92, 246, 0.1) 0px,
+                rgba(139, 92, 246, 0.1) 2px,
+                transparent 2px,
+                transparent 4px
+            );
+            opacity: 0.5;
+        }
+
+        .card__text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25em;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        .card__title {
+            color: var(--card-text);
+            font-size: 1.1em;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .card:hover .card__title {
+            color: var(--card-accent);
+            transform: translateX(2px);
+        }
+
+        .card__description {
+            color: var(--card-text);
+            font-size: 0.75em;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .card__description {
+            opacity: 1;
+            transform: translateX(2px);
+        }
+
+        .card__footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            width: 100%;
+        }
+
+        .card__price {
+            color: var(--card-text);
+            font-weight: 700;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .card__price {
+            color: var(--card-accent);
+            transform: translateX(2px);
+        }
+
+        .card__button {
+            width: 28px;
+            height: 28px;
+            background: var(--card-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform: scale(0.9);
+        }
+
+        .card:hover .card__button {
+            transform: scale(1);
+            box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .card:hover .card__button svg {
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Animations */
+        @keyframes shine {
+            0% {
+                background-position: -100% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        .header-bg-transparent {
+            background-color: transparent;
+            box-shadow: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+        .header-bg-blur {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 12px;
+            position: relative;
+            color: #1a1a1a;
+            animation: slideIn 0.3s forwards;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .button {
+            height: 50px;
+            width: 200px;
+            position: relative;
+            background-color: transparent;
+            cursor: pointer;
+            border: 2px solid #fff;
+            overflow: hidden;
+            border-radius: 30px;
+            color: #fff;
+            transition: all 0.5s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-txt {
+            z-index: 1;
+            font-weight: 800;
+            letter-spacing: 4px;
+        }
+        .type1::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: all 0.5s ease-in-out;
+            background-color: #fff;
+            border-radius: 30px;
+            visibility: hidden;
+            height: 10px;
+            width: 10px;
+            z-index: -1;
+        }
+        .button:hover {
+            box-shadow: 1px 1px 200px #fff;
+            color: #000;
+            border: none;
+        }
+        .type1:hover::after {
+            visibility: visible;
+            transform: scale(100) translateX(2px);
+        }
+        .silk-texture-bg {
+            background-color: #0d0d0d;
+        }
+        .explore-more-btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        /* New styles for the WhatsApp button on the card */
+        .whatsapp-btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end; /* Pushes the button to the bottom of the card */
+            width: 100%;
+            padding-top: 0.5em; /* Add some space above the button */
+        }
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            padding: 0.5em 1.5em;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.875em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5em;
+            text-decoration: none;
+        }
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden bg-white text-black">
+
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 transform translate-y-0 header-bg-blur">
+        <nav class="container mx-auto flex items-center justify-between p-4">
+            <!-- Logo -->
+            <a href="index.html" class="text-3xl font-bold tracking-wider text-white">
+                <span class="text-stone-300">ANANDSNEH</span>
+            </a>
+
+            <!-- Navigation Links (Desktop) -->
+            <ul class="hidden md:flex flex-grow justify-center space-x-2 text-sm font-medium uppercase tracking-widest text-white">
+                <li><a href="index.html" class="glass-nav-item"><span>Home</span></a></li>
+                <li><a href="#mens-rings-section" class="glass-nav-item"><span>Store</span></a></li>
+                <li><a href="index.html#customization" class="glass-nav-item"><span>Customization</span></a></li>
+                <li><a href="index.html#about-us" class="glass-nav-item"><span>About Us</span></a></li>
+                <li><a href="index.html#contact-us" class="glass-nav-item"><span>Contact Us</span></a></li>
+            </ul>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-70 px-4 pt-2 pb-4 space-y-2 text-white">
+            <a href="index.html" class="block hover:bg-gray-800 rounded-md p-2 transition-colors">Home</a>
+            <a href="#mens-rings-section" class="block hover:bg-gray-800 rounded-md p-2 transition-colors">Store</a>
+            <a href="index.html#customization" class="block hover:bg-gray-800 rounded-md p-2 transition-colors">Customization</a>
+            <a href="index.html#about-us" class="block hover:bg-gray-800 rounded-md p-2 transition-colors">About Us</a>
+            <a href="index.html#contact-us" class="block hover:bg-gray-800 rounded-md p-2 transition-colors">Contact Us</a>
+        </div>
+    </header>
+
+    <main class="mt-20">
+        <section class="py-12 bg-white">
+            <div class="container mx-auto px-4 lg:px-8">
+                <h1 class="text-3xl md:text-5xl font-serif text-center mb-12">Our Full Collection</h1>
+            </div>
+        </section>
+
+        <!-- Mens Rings Section -->
+        <section id="mens-rings-section" class="py-12 silk-texture-bg text-white">
+            <div class="container mx-auto px-4 lg:px-8">
+                <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Men's Rings</h2>
+                <div id="mens-rings-container" class="cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Products will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Necklaces Section -->
+        <section id="necklaces-section" class="py-12 bg-white">
+            <div class="container mx-auto px-4 lg:px-8">
+                <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Necklaces</h2>
+                <div id="necklaces-container" class="cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Products will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Gold Coins Section -->
+        <section id="gold-coins-section" class="py-12 silk-texture-bg text-white">
+            <div class="container mx-auto px-4 lg:px-8">
+                <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Gold Coins</h2>
+                <div id="gold-coins-container" class="cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Products will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Rings Section -->
+        <section id="rings-section" class="py-12 bg-white">
+            <div class="container mx-auto px-4 lg:px-8">
+                <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Rings</h2>
+                <div id="rings-container" class="cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Products will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Anklets Section -->
+        <section id="anklets-section" class="py-12 silk-texture-bg text-white">
+            <div class="container mx-auto px-4 lg:px-8">
+                <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Anklets</h2>
+                <div id="anklets-container" class="cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Products will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Gold Chains Section -->
+        <section id="gold-chains-section" class="py-12 bg-white">
+            <div class="container mx-auto px-4 lg:px-8">
+                <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Gold Chains</h2>
+                <div id="gold-chains-container" class="cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Products will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Mangalsutra Section -->
+        <section id="mangal-sutra-section" class="py-12 silk-texture-bg text-white">
+            <div class="container mx-auto px-4 lg:px-8">
+                <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Mangalsutra</h2>
+                <div id="mangal-sutra-container" class="cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Products will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Female Bracelets Section -->
+        <section id="female-bracelets-section" class="py-12 bg-white">
+            <div class="container mx-auto px-4 lg:px-8">
+                <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Female Bracelets</h2>
+                <div id="female-bracelets-container" class="cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Products will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Watch Ornaments Section -->
+        <section id="watch-ornaments-section" class="py-12 silk-texture-bg text-white">
+            <div class="container mx-auto px-4 lg:px-8">
+                <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Watch Ornaments</h2>
+                <div id="watch-ornaments-container" class="cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Products will be dynamically inserted here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="silk-texture-bg text-white py-12">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- About Column -->
+                <div>
+                    <h4 class="text-xl font-serif mb-4">About</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Our Brand</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Our Founder</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms</a></li>
+                    </ul>
+                </div>
+                <!-- Help Column -->
+                <div>
+                    <h4 class="text-xl font-serif mb-4">Help</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Shipping</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Returns</a></li>
+                    </ul>
+                </div>
+                <!-- Company Column -->
+                <div>
+                    <h4 class="text-xl font-serif mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy</a></li>
+                        <li><a href="index.html#contact-us" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm">
+                <p>&copy; 2023 Stellar Gems. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Dynamic Product Description -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('productModal')">&times;</span>
+            <h3 id="productModalTitle" class="text-xl font-serif mb-4"></h3>
+            <div id="productModalContent" class="text-base text-black">
+                <div id="productLoadingSpinner" class="loading-spinner"></div>
+            </div>
+            <a id="productWhatsappLink" href="#" class="mt-6 button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white mx-auto block w-fit">
+                <div class="btn-txt">Enquire on WhatsApp</div>
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        // === Data Array for Products ===
+        const products = [
+            // Men's Rings
+            { name: "The Frecia Ring", category: "Men's Rings", price: "Rs. 61,460", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/a71801de50c36ed8887abb0108ffb3e62ce1b432/The%20Frecia%20Ring.jpg" },
+            { name: "The Giana Ring", category: "Men's Rings", price: "Rs. 1,23,345", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/edc1b13c6182114ec0b5194e5619fa44d48dd30f/The%20Giana%20Ring.jpeg" },
+            { name: "The Peacock Vivacity Ring", category: "Men's Rings", price: "₹ 81,292", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/df114d1f085e30c94ba1b007d591299fe4daa30e/The%20Peacock%20Vivacity%20Ring_.jpg" },
+            { name: "The Petunia Ring", category: "Men's Rings", price: "₹75,759", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/a0ae6b29000d4e495bcd4b4e4fa1a5d39320e64b/The%20Petunia%20Ring.jpg" },
+            { name: "The Twirled Wonder Ring", category: "Men's Rings", price: "₹ 1,03,706", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/475ed56dede65af715f7b7d05eb97f128b5f6491/The%20Twirled%20Wonder%20Ring.jpg" },
+            
+            // Necklaces
+            { name: "The Flutter And Floral Kids Necklace", category: "Necklaces", price: "₹28,780", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/ed31d4388671e40ceb2ab6dd8da70aa95d37cf6c/The%20Flutter%20And%20Floral%20Kids%20Necklace__.webp" },
+            { name: "The Inez Bar Necklace", category: "Necklaces", price: "₹90,813", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/90d864604a65df528cfdbb442e478d25f89716f8/The%20Inez%20Bar%20Necklace__.webp" },
+            { name: "The Flair Necklace", category: "Necklaces", price: "₹70,121", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/d5b34a9c094c8c1b38c765ab606ce40b1a44fcb3/The%20Flair%20Necklace__.webp" },
+            { name: "The Emica Lariat Necklace", category: "Necklaces", price: "₹52,076", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/da91a717598d52d71c79985379a8b06d01a36c3a/The%20Emica%20Lariat%20Necklace__.webp" },
+            { name: "The Nicole Necklace", category: "Necklaces", price: "₹ 2,26,923", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/e88bacc19472d65068fc7cd2cb29ea1d948da3e7/The%20Nicole%20Necklace__.webp" },
+            { name: "The Kalka Necklace", category: "Necklaces", price: "₹1,41,386", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/ae504c5f65a3eb437cb70c6f327bf2e30813eb3e/The%20Kalka%20Necklace__.webp" },
+            { name: "The Heavenly Sunflower Necklace", category: "Necklaces", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/13014c3f3dc2881d66119ecbb83619884dc39184/The%20Heavenly%20Sunflower%20Necklace__.webp" },
+            { name: "The Raekh Necklace", category: "Necklaces", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/0de03b75614405199c4f0622b9049c9a2e73a1e8/The%20Raekh%20Necklace__.webp" },
+            { name: "The Protecter Evil Eye Kids Necklace", category: "Necklaces", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/33f57c96a154d7e82d54f8a196a8501a8da65d77/The%20Protecter%20Evil%20Eye%20Kids%20Necklace__.webp" },
+            { name: "The Chanbeli Necklace", category: "Necklaces", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/ac24888018105169621072c0a0c1ed5a5f38ca86/The%20Chanbeli%20Necklace__.webp" },
+            { name: "The Karika Necklace", category: "Necklaces", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/c88b4aeae14c4ed7afdfdab0daf424c1d1c98b56/The%20Karika%20Necklace__.webp" },
+            { name: "The Aaniya Necklace", category: "Necklaces", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/415186f7d595daa118112517dd932c982bdcb9d6/The%20Aaniya%20Necklace__.webp" },
+
+            // Gold Coins
+            { name: "10 gram 24 KT Lakshmi Gold Coin", category: "Gold Coins", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/fb243249c47cf5ab7c559812004515ff14b57e94/10%20gram%2024%20KT%20Lakshmi%20Gold%20Coin__.webp" },
+            { name: "2 gram 24 KT Ganesh Gold Coin", category: "Gold Coins", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/608ad9124484a2d2d148700336c10c4e7026aceb/2%20gram%2024%20KT%20Ganesh%20Gold%20Coin__.webp" },
+            { name: "1 gram 24 KT Krishna Gold Coin", category: "Gold Coins", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/e43d6988ab7357924f7335757d1eba19cd431b7e/1%20gram%2024%20KT%20Krishna%20Gold%20Coin__.webp" },
+            { name: "50 gram 24 KT Lakshmi Ganesh Gold Coin", category: "Gold Coins", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/aadeb6c1eaa823499dd56e1157535b3cd937c4db/50%20gram%2024%20KT%20Lakshmi%20Ganesh%20Gold%20Coin__.webp" },
+
+            // Rings
+            { name: "The Nirvana Vanki Ring", category: "Rings", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/98f5a5d380cc4f81cf027b31e14e52ad6be3a328/The%20Nirvana%20Vanki%20Ring__.jpg" },
+            { name: "The Mistee Band Ring", category: "Rings", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/98f5a5d380cc4f81cf027b31e14e52ad6be3a328/The%20Mistee%20Band%20Ring__.jpg" },
+            { name: "The Francoise Chevron Ring", category: "Rings", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/96917b842caa9fb512e3b5ff78642c8b2487673f/The%20Francoise%20Chevron%20Ring__.jpg" },
+            { name: "The Basia Band For Him", category: "Rings", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/5949dff0b74cd1199278229ef8fa9396ec058eb6/The%20Basia%20Band%20For%20Him.jpg" },
+            { name: "The Exalt Bypass Ring", category: "Rings", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/4e75fa0888f7c789f29aeb23a931eb51a2d196e9/The%20Exalt%20Bypass%20Ring__.webp" },
+
+            // Anklets
+            { name: "The Hygge Anklet", category: "Anklets", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/11655094dd1f0d20f30fe276d42c4e43406d0a52/The%20Hygge%20Anklet.webp" },
+            { name: "The Aurore Anklet", category: "Anklets", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/2f87c350d8b0e1bf2e342e5d11e2e60e38751343/The%20Aurore%20Anklet__.webp" },
+            { name: "The Sinag Anklet", category: "Anklets", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/3e853c3ad7116c909dc632ac6fdff5b15aa2fb17/The%20Sinag%20Anklet.webp" },
+            { name: "The Zurri Anklet", category: "Anklets", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/8d203e531572c18f0e2448c99336bfa59fe7ed7c/The%20Zurri%20Anklet__.webp" },
+            { name: "The Selenia Anklet", category: "Anklets", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/145363c80756dfe31cde1118703d29e2a83e0e1a/The%20Selenia%20Anklet__.webp" },
+
+            // Gold Chains
+            { name: "The Beridze Gold Chain For Him", category: "Gold Chains", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/d66d998e5bd5c311c02ff342c5ba63222ed38361/The%20Beridze%20Gold%20Chain%20For%20Him.webp" },
+            { name: "The Abiral Gold Chain", category: "Gold Chains", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/9e089266c4fb2851eb6958472f61048236919f00/The%20Abiral%20Gold%20Chain__.webp" },
+            { name: "The Rolfo Gold Chain", category: "Gold Chains", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/1d4b6dbe02d8165444b92013df4d7e3482e5a3ca/The%20Rolfo%20Gold%20Chain__.webp" },
+            { name: "The Elijah Gold Chain", category: "Gold Chains", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/c9be08e5655a16714fa19aa2236d298870c24b18/The%20Elijah%20Gold%20Chain.webp" },
+            
+            // Mangalsutra
+            { name: "The Koyna Evil Eye Mangalsutra", category: "Mangalsutra", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/1f6acfc04c443790279e97a5be8a01cc05c56485/The%20Koyna%20Evil%20Eye%20Mangalsutra__.webp" },
+            { name: "The Saija Mangalsutra Pendant", category: "Mangalsutra", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/1b8027469d84fd717c74afba5c4e64b9de08e0ac/The%20Saija%20Mangalsutra%20Pendant__.webp" },
+            { name: "The Aadarshini Mangalsutra Pendant", category: "Mangalsutra", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/ffc0050e475b4a67c904a792994c1f4e87d1ab05/The%20Aadarshini%20Mangalsutra%20Pendant__.webp" },
+            { name: "The Aaruni Mangalsutra", category: "Mangalsutra", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/22b8d3c5aff65bcdba7d1eab6b5185d83379609b/The%20Aaruni%20Mangalsutra__.webp" },
+            { name: "The Amirana Mangalsutra Pendant", category: "Mangalsutra", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/d62b985307d9d4669d7120ef2c935fd37c1ee2f3/The%20Amirana%20Mangalsutra%20Pendant__.webp" },
+
+            // Female Bracelets
+            { name: "The Adalin Bracelet", category: "Female Bracelets", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/914ca34bf47a1b204b6f0cf6a00bbb9be10f401b/The%20Adalin%20Bracelet__.webp" },
+            { name: "The Eiffel Bracelet", category: "Female Bracelets", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/3aa945d0621c0656949908e3fc0ada2d5448309c/The%20Eiffel%20Bracelet__.webp" },
+            { name: "The Melene Evil Eye Bracelet", category: "Female Bracelets", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/f100e33638330f55bee7a12348fbd17ee6cb541e/The%20Melene%20Evil%20Eye%20Bracelet__.webp" },
+            { name: "The Whimsical Bracelet", category: "Female Bracelets", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/5b85403806392ae2e8017bb8f75e590eefddfbe3/The%20Whimsical%20Bracelet__.webp" },
+            { name: "The Siria Evil Eye Bracelet", category: "Female Bracelets", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/dc16209aa060fa00c1fa9be4b5d2efa78ff751b8/The%20Siria%20Evil%20Eye%20Bracelet.webp" },
+            { name: "The Unify Toggle Bracelet", category: "Female Bracelets", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/fe033ddfafc9e231f2faa9e97680be41a7846d90/The%20Unify%20Toggle%20Bracelet__.webp" },
+            
+            // Watch Ornaments
+            { name: "The Cloe Mutliwearable Watch Band", category: "Watch Ornaments", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/0f1ecb20eb24f5d00ddd2454862f8cb2334b5520/The%20Cloe%20Mutliwearable%20Watch%20Band__.webp" },
+            { name: "The Arkasa Watch Band", category: "Watch Ornaments", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/cef48777500954371669b973ff458d74bc2f70f0/The%20Arkasa%20Watch%20Band__.webp" },
+            { name: "The Love Script Watch Band", category: "Watch Ornaments", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/b7647037018fcc1cf27e871ee858507b80267455/The%20Love%20Script%20Watch%20Band__.webp" },
+            { name: "The Ordell Watch Charm", category: "Watch Ornaments", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/e3eaf0d8bc406174d56ba1c26cada22142f72488/The%20Ordell%20Watch%20Charm__.webp" },
+            { name: "The Colette Watch Charm", category: "Watch Ornaments", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/4d1c5b3af7021ba3fd77774830e563d4d7537c/The%20Colette%20Watch%20Charm__.webp" },
+            { name: "The Eliore Watch Band", category: "Watch Ornaments", price: "Price on request", imageUrl: "https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/a1ab20e34c539604877c6ca2e01911133a1043f4/The%20Eliore%20Watch%20Band__.webp" }
+        ];
+
+        // === JavaScript for UI and AI Functionality ===
+
+        // Mobile menu toggle logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const header = document.getElementById('header');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Sticky header and auto-hide on scroll
+        let lastScrollY = window.scrollY;
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.remove('header-bg-transparent');
+                header.classList.add('header-bg-blur');
+            } else {
+                header.classList.remove('header-bg-blur');
+                header.classList.add('header-bg-transparent');
+            }
+
+            if (lastScrollY < window.scrollY && window.scrollY > 100) {
+                header.classList.remove('translate-y-0');
+                header.classList.add('-translate-y-full');
+            } else {
+                header.classList.remove('-translate-y-full');
+                header.classList.add('translate-y-0');
+            }
+            lastScrollY = window.scrollY;
+        });
+
+        // Modal and AI functionality elements
+        const productModal = document.getElementById('productModal');
+        const productModalTitle = document.getElementById('productModalTitle');
+        const productModalContent = document.getElementById('productModalContent');
+        const productLoadingSpinner = document.getElementById('productLoadingSpinner');
+        const productWhatsappLink = document.getElementById('productWhatsappLink');
+        const placeholderImg = "https://placehold.co/600x400/808080/FFFFFF?text=Image+Not+Found";
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+        
+        // Dynamic generation of product cards
+        function renderProducts() {
+            const categories = [
+                { name: "Men's Rings", id: "mens-rings-container" },
+                { name: "Necklaces", id: "necklaces-container" },
+                { name: "Gold Coins", id: "gold-coins-container" },
+                { name: "Rings", id: "rings-container" },
+                { name: "Anklets", id: "anklets-container" },
+                { name: "Gold Chains", id: "gold-chains-container" },
+                { name: "Mangalsutra", id: "mangal-sutra-container" },
+                { name: "Female Bracelets", id: "female-bracelets-container" },
+                { name: "Watch Ornaments", id: "watch-ornaments-container" }
+            ];
+
+            categories.forEach(cat => {
+                const container = document.getElementById(cat.id);
+                const filteredProducts = products.filter(p => p.category === cat.name);
+                
+                filteredProducts.forEach(product => {
+                    const priceBadge = product.price && product.price !== 'Price on request' ? `<div class="card__badge bg-stone-500">${product.price}</div>` : '';
+                    const cardHtml = `
+                        <div class="card" onclick="showProductDetails('${product.name}')">
+                            <div class="card__shine"></div>
+                            <div class="card__glow"></div>
+                            <div class="card__content">
+                                ${priceBadge}
+                                <div style="background-image: url('${product.imageUrl}');" class="card__image" onerror="this.style.backgroundImage='url(${placeholderImg})'"></div>
+                                <div class="card__text">
+                                    <p class="card__title">${product.name}</p>
+                                </div>
+                                <div class="whatsapp-btn-container">
+                                    <a href="https://wa.me/916307438787?text=I am interested in ${product.name}. Please provide more details." target="_blank" class="whatsapp-btn" onclick="event.stopPropagation()">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                                            <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399-.366 2.76-.904 3.978l-.004.008a.65.65 0 0 0-.154.637c.549 1.485 2.14 3.08 3.687 3.075a.6.6 0 0 0 .611-.087c.18-.112.55-.407.55-.407l.004-.008a7.85 7.85 0 0 0 1.259.184c1.234 0 2.44-.397 3.397-1.127a7.863 7.863 0 0 0 2.455-2.072l-.005-.008c-.24-.486-.411-.796-.549-.974a.434.434 0 0 1-.09-.375c.06-.153.21-.498.414-.732a11.137 11.137 0 0 1 1.706-1.52c.67-.544.757-.692.757-.692a1.275 1.275 0 0 1 .524-1.168.65.65 0 0 0-.442-.486L13.601 2.326zM5.567 4.675c.214.283.473.342.66.368.172.02.5.02.5.02a.235.235 0 0 1 .123.006c.099.034.238.113.364.249.126.13.238.304.316.482.079.178.117.388.117.61a.846.846 0 0 1-.225.592.518.518 0 0 1-.397.164c-.053 0-.142-.016-.29-.07l-.147-.06c-.198-.08-1.189-.487-1.464-.693-.275-.205-.446-.48-.525-.56a.434.434 0 0 1-.082-.249c-.004-.03-.004-.06.002-.09.02-.123.07-.26.155-.375.085-.116.196-.217.32-.267.124-.05.253-.067.433-.049l.063.003c.092.004.148.006.18.006z" />
+                                        </svg>
+                                        Enquire
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += cardHtml;
+                });
+            });
+        }
+
+        // AI powered product description generation
+        async function showProductDetails(productName) {
+            productModal.style.display = 'flex';
+            productModalTitle.textContent = productName;
+            productModalContent.innerHTML = '';
+            productModalContent.appendChild(productLoadingSpinner);
+            productLoadingSpinner.style.display = 'block';
+            productWhatsappLink.style.display = 'none';
+
+            const systemPrompt = "You are a world-class luxury jewelry copywriter. Your task is to write a single, elegant and sophisticated product description for a jewelry item. The description should be concise, focusing on the quality, emotion, and aesthetic of the piece. Do not include any pricing information or call-to-action.";
+            const userQuery = `Write a product description for the following jewelry item: ${productName}`;
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                tools: [{ "google_search": {} }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                },
+            };
+
+            // Exponential backoff retry logic
+            const maxRetries = 5;
+            let currentRetry = 0;
+            let response;
+            
+            while (currentRetry < maxRetries) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.status === 429) { // Too many requests
+                        const delay = Math.pow(2, currentRetry) * 1000;
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        currentRetry++;
+                        continue;
+                    }
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const result = await response.json();
+                    const text = result?.candidates?.[0]?.content?.parts?.[0]?.text || "Failed to generate description.";
+                    
+                    productLoadingSpinner.style.display = 'none';
+                    productModalContent.innerHTML = `<p>${text}</p>`;
+                    productWhatsappLink.href = `https://wa.me/916307438787?text=I am interested in ${productName}. Please provide more details.`;
+                    productWhatsappLink.style.display = 'block';
+                    break;
+                } catch (error) {
+                    currentRetry++;
+                    if (currentRetry >= maxRetries) {
+                        console.error("API Call failed after multiple retries:", error);
+                        productLoadingSpinner.style.display = 'none';
+                        productModalContent.innerHTML = `<p class="text-red-500">Sorry, I couldn't generate a description at this time. Please try again later.</p>`;
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target == productModal) {
+                closeModal('productModal');
+            }
+        }
+
+        // Initial render on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+        });
+
+    </script>
+</body>
+</html>
