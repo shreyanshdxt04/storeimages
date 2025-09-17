@@ -834,13 +834,7 @@
         </div>
 
 
-        <!-- Carousel Controls -->
-        <button class="carousel-arrow left" id="prev-slide">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-        </button>
-        <button class="carousel-arrow right" id="next-slide">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-        </button>
+        <!-- Carousel Controls Removed in favor of swipe gestures -->
         <div class="carousel-indicators" id="carousel-indicators">
             <div class="indicator active" data-index="0"></div>
             <div class="indicator" data-index="1"></div>
@@ -1886,12 +1880,13 @@
         });
 
         // Hero Carousel
+        const carousel = document.getElementById('hero-section');
         const slides = document.querySelectorAll('.carousel-slide');
         const indicators = document.querySelectorAll('.indicator');
-        const prevBtn = document.getElementById('prev-slide');
-        const nextBtn = document.getElementById('next-slide');
         let currentSlide = 0;
         let slideInterval;
+        let startX = 0;
+        let isSwiping = false;
 
         function showSlide(index) {
             slides.forEach((slide, i) => {
@@ -1915,16 +1910,35 @@
             showSlide(currentSlide);
         }
 
-        prevBtn.addEventListener('click', () => {
-            clearInterval(slideInterval);
-            prevSlide();
-            startAutoSlide();
+        // Swipe events for touch devices
+        carousel.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            isSwiping = true;
         });
 
-        nextBtn.addEventListener('click', () => {
-            clearInterval(slideInterval);
-            nextSlide();
-            startAutoSlide();
+        carousel.addEventListener('touchmove', (e) => {
+            if (!isSwiping) return;
+            // Prevent vertical scrolling while swiping horizontally
+            e.preventDefault(); 
+        }, { passive: false });
+
+        carousel.addEventListener('touchend', (e) => {
+            if (!isSwiping) return;
+            const endX = e.changedTouches[0].clientX;
+            const threshold = 50; // Minimum swipe distance
+            
+            if (startX - endX > threshold) {
+                // Swiped left
+                clearInterval(slideInterval);
+                nextSlide();
+                startAutoSlide();
+            } else if (endX - startX > threshold) {
+                // Swiped right
+                clearInterval(slideInterval);
+                prevSlide();
+                startAutoSlide();
+            }
+            isSwiping = false;
         });
 
         indicators.forEach(indicator => {
