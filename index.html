@@ -1981,8 +1981,8 @@
 
             const systemPrompt = "You are a world-class luxury jewelry copywriter. Your task is to write a single, elegant and sophisticated product description for a jewelry item. The description should be concise, focusing on the quality, emotion, and aesthetic of the piece. Do not include any pricing information or call-to-action.";
             const userQuery = `Write a product description for the following jewelry item: ${productName}`;
-            const apiKey = "";
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            const key = "AIzaSyDYst8nrPa1yyy6kU-egJtdsvf_aaBhyxw";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${key}`;
 
             const payload = {
                 contents: [{ parts: [{ text: userQuery }] }],
@@ -2037,8 +2037,8 @@
 
             const systemPrompt = "You are a creative jewelry designer. Your task is to generate five elegant and unique names for a new jewelry collection or product based on a set of keywords. Present the names as a simple, numbered list. Do not add any extra text or conversation.";
             const userQuery = `Generate 5 elegant product names for a jewelry piece based on these keywords: ${keywords}`;
-            const apiKey = "";
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            const key = "AIzaSyDYst8nrPa1yyy6kU-egJtdsvf_aaBhyxw";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${key}`;
 
             const payload = {
                 contents: [{ parts: [{ text: userQuery }] }],
@@ -2081,8 +2081,8 @@
             const style = document.getElementById('imageStyle').value;
             const fullPrompt = `professional product photography of a high-end jewelry piece, on a black background, with studio lighting, showcasing intricate details: a ${prompt}`;
             
-            const apiKey = "";
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${apiKey}`;
+            const key = "AIzaSyDYst8nrPa1yyy6kU-egJtdsvf_aaBhyxw";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${key}`;
 
             const payload = { 
                 instances: [{ prompt: fullPrompt }],
