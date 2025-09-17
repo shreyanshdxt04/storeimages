@@ -632,8 +632,6 @@
             background-position: center;
             transition: opacity 1s ease-in-out;
             opacity: 0;
-            /* Parallax effect */
-            background-attachment: fixed;
         }
 
         .carousel-slide.active {
@@ -1888,28 +1886,6 @@
         let startX = 0;
         let isSwiping = false;
 
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                indicators[i].classList.remove('active');
-                if (i === index) {
-                    slide.classList.add('active');
-                    indicators[i].classList.add('active');
-                }
-            });
-            currentSlide = index;
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
-        }
-
         // Swipe events for touch devices
         carousel.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
@@ -1940,6 +1916,37 @@
             }
             isSwiping = false;
         });
+
+        // Parallax effect on scroll
+        const parallaxSlides = document.querySelectorAll('.carousel-slide');
+        window.addEventListener('scroll', () => {
+            let yOffset = window.scrollY;
+            parallaxSlides.forEach(slide => {
+                slide.style.transform = `translateY(${yOffset * 0.4}px)`;
+            });
+        });
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                indicators[i].classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                    indicators[i].classList.add('active');
+                }
+            });
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
 
         indicators.forEach(indicator => {
             indicator.addEventListener('click', (e) => {
@@ -2093,7 +2100,7 @@
             nameGeneratorSection.classList.toggle('hidden');
         });
 
-        // Handle the name generator form submission
+        // Handle the name generation form submission
         namingForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             namingResult.classList.remove('hidden');
