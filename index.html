@@ -7,9 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght=300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        
         body {
             font-family: 'Inter', sans-serif;
             color: #1a1a1a;
@@ -37,24 +34,6 @@
         /* Silk background texture effect */
         .silk-texture-bg {
             background-color: #0d0d0d;
-        }
-        
-        /* Smooth fade-in animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 1s forwards;
-            animation-timing-function: ease-out;
-        }
-
-        /* Hover zoom effect */
-        .zoom-on-hover:hover .product-image {
-            transform: scale(1.05);
-            transition: transform 0.3s ease-in-out;
         }
         
         /* Category Card Hover Effect */
@@ -407,8 +386,8 @@
         /* Glass effect for navigation bar */
         .glass-nav-item {
             position: relative;
-            padding: 5px 14px;
-            font-size: 13px;
+            padding: 5px 10px;
+            font-size: 10px;
             color: #fff;
             border: none;
             background: transparent;
@@ -474,6 +453,28 @@
             -webkit-backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        /* New Fade in on scroll animation */
+        @keyframes fadeInAnimation {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -530,17 +531,6 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
-        .img-placeholder {
-            height: 300px;
-            background-color: #f3f4f6;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #9ca3af;
-            font-family: 'Playfair Display', serif;
-            border-radius: 8px;
-        }
         .gen-image {
             max-width: 100%;
             height: auto;
@@ -560,15 +550,18 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            transition: opacity 4s ease-in-out;
+            transition: opacity 5s ease-in-out;
         }
         #loading-screen.fade-out {
             opacity: 0;
-            visibility: hidden;
+            /* Using a pointer-events: none to make sure the screen doesn't block the buttons once faded out */
+            pointer-events: none;
         }
         .loading-logo {
-            width: 150px;
+            width: 200px;
             margin-bottom: 20px;
+            opacity: 0;
+            animation: logo-fade-in 2s ease-in forwards;
         }
         .loading-bar-container {
             width: 200px;
@@ -581,7 +574,18 @@
             width: 0;
             height: 100%;
             background-color: #fff;
-            transition: width 1s ease-in-out;
+            transition: width 5s ease-in-out;
+        }
+
+        @keyframes logo-fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Hero Carousel styles */
@@ -648,13 +652,6 @@
             background-color: #f9fafb;
         }
 
-        .follow-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-
         .explore-more-btn-container {
             display: flex;
             justify-content: center;
@@ -665,10 +662,10 @@
 <body class="bg-gray-100">
 
     <!-- Loading Screen -->
-    <div id="loading-screen">
-        <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/fdd4fc36d94b1353a5a24bba90fe555fc6a6b100/Gemini_Generated_Image_dggmmddggmmddggm%20(1)%20(2).png" alt="Loading Logo" class="loading-logo">
-        <div class="loading-bar-container">
-            <div id="loading-bar" class="loading-bar"></div>
+    <div id="loading-screen" class="flex flex-col justify-center items-center fixed inset-0 z-[1000] bg-black transition-opacity duration-[5000ms]">
+        <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/fdd4fc36d94b1353a5a24bba90fe555fc6a6b100/Gemini_Generated_Image_dggmmddggmmddggm%20(1)%20(2).png" alt="Loading Logo" class="w-48 mb-8 loading-logo">
+        <div class="w-56 h-1 bg-gray-700 rounded-full overflow-hidden">
+            <div id="loading-bar" class="h-full bg-white transition-all duration-[5000ms] ease-in-out" style="width: 0%;"></div>
         </div>
     </div>
 
@@ -715,7 +712,7 @@
     </section>
 
     <!-- Category Slider -->
-    <section id="categories" class="py-20 bg-white">
+    <section id="categories" class="py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="flex items-center justify-between mb-8">
                 <h2 class="text-xl md:text-2xl font-serif">Categories</h2>
@@ -783,7 +780,7 @@
     </section>
     
     <!-- About Us Section -->
-    <section id="about-us" class="py-20 bg-white">
+    <section id="about-us" class="py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="text-center lg:text-left space-y-6">
@@ -808,7 +805,7 @@
     </section>
 
     <!-- The Anandsneh Promise Section -->
-    <section id="anandsneh-promise" class="py-20 silk-texture-bg text-white">
+    <section id="anandsneh-promise" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">The Anandsneh Promise</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
@@ -824,20 +821,12 @@
                     <h3 class="text-xl font-serif mb-2">Elegant Designs</h3>
                     <p class="text-sm text-gray-300">Blending tradition with modernity for timeless appeal.</p>
                 </div>
-                <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-serif mb-2">Lifetime Buyback</h3>
-                    <p class="text-sm text-gray-300">Our commitment to transparency and lifelong value.</p>
-                </div>
-                <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-serif mb-2">Trusted by Generations</h3>
-                    <p class="text-sm text-gray-300">A family-run business that treats every customer like family.</p>
-                </div>
             </div>
         </div>
     </section>
 
     <!-- Customer Testimonials Section -->
-    <section id="testimonials" class="py-20 bg-white">
+    <section id="testimonials" class="py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8 text-center">
             <h2 class="text-2xl md:text-3xl font-serif mb-12">Trusted by Generations</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -854,7 +843,7 @@
     </section>
 
     <!-- Men's Rings Section -->
-    <section id="mens-rings" class="py-20 silk-texture-bg text-white">
+    <section id="mens-rings" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Men's Rings</h2>
             <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -912,24 +901,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" onclick="showProductDetails('The Petunia Ring')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div class="card__badge bg-stone-500">NEW</div>
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/a0ae6b29000d4e495bcd4b4e4fa1a5d39320e64b/The%20Petunia%20Ring.jpg')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Petunia Ring</p>
-                            <p class="card__description text-gray-500">Exquisite diamond design</p>
-                        </div>
-                        <div class="card__footer">
-                             <a href="#" class="card__button">
-                                 <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                             </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="explore-more-btn-container">
                 <a href="catalog.html" class="button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white">
                     <div class="btn-txt">Explore More</div>
@@ -939,7 +910,7 @@
     </section>
 
     <!-- Necklaces Section -->
-    <section id="necklaces" class="py-20 bg-white">
+    <section id="necklaces" class="py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Necklaces</h2>
             <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -1000,25 +971,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Additional Necklaces -->
-                <div class="card" onclick="showProductDetails('The Emica Lariat Necklace')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/da91a717598d52d71c79985379a8b06d01a36c3a/The%20Emica%20Lariat%20Necklace__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Emica Lariat Necklace</p>
-                            <p class="card__description text-gray-500">A delicate and beautiful design</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">₹52,076</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="explore-more-btn-container">
                 <a href="catalog.html" class="button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white">
                     <div class="btn-txt">Explore More</div>
@@ -1028,7 +980,7 @@
     </section>
 
     <!-- Gold Coins Section -->
-    <section id="gold-coins" class="py-20 silk-texture-bg text-white">
+    <section id="gold-coins" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Gold Coins</h2>
             <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -1096,7 +1048,7 @@
     </section>
 
     <!-- Rings Section -->
-    <section id="rings" class="py-20 bg-white">
+    <section id="rings" class="py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Rings</h2>
             <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -1154,24 +1106,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" onclick="showProductDetails('The Basia Band For Him')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/5949dff0b74cd1199278229ef8fa9396ec058eb6/The%20Basia%20Band%20For%20Him.jpg')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Basia Band For Him</p>
-                            <p class="card__description text-gray-500">Exquisite diamond design</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="explore-more-btn-container">
                 <a href="catalog.html" class="button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white">
                     <div class="btn-txt">Explore More</div>
@@ -1181,7 +1115,7 @@
     </section>
 
     <!-- Anklets Section -->
-    <section id="anklets" class="py-20 silk-texture-bg text-white">
+    <section id="anklets" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Anklets</h2>
             <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -1249,7 +1183,7 @@
     </section>
 
     <!-- Gold Chains Section -->
-    <section id="gold-chains" class="py-20 bg-white">
+    <section id="gold-chains" class="py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Gold Chains</h2>
             <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -1317,7 +1251,7 @@
     </section>
 
     <!-- Mangalsutra Section -->
-    <section id="mangal-sutra" class="py-20 silk-texture-bg text-white">
+    <section id="mangal-sutra" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Mangalsutra</h2>
             <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -1385,7 +1319,7 @@
     </section>
 
     <!-- Female Bracelets Section -->
-    <section id="female-bracelets" class="py-20 bg-white">
+    <section id="female-bracelets" class="py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Female Bracelets</h2>
             <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -1453,7 +1387,7 @@
     </section>
 
     <!-- Watch Ornaments Section -->
-    <section id="watch-ornaments" class="py-20 silk-texture-bg text-white">
+    <section id="watch-ornaments" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Watch Ornaments</h2>
             <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -1521,7 +1455,7 @@
     </section>
 
     <!-- Business Section -->
-    <section id="business-section" class="py-20 silk-texture-bg text-white">
+    <section id="business-section" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Get the best diamonds for your business</h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -1542,7 +1476,7 @@
     </section>
     
     <!-- About / Legacy Section -->
-    <section id="legacy-section" class="py-20 bg-white">
+    <section id="legacy-section" class="py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <!-- New Image Grid for Legacy Section -->
@@ -1566,7 +1500,7 @@
     </section>
 
     <!-- Instagram / Pinterest Gallery -->
-    <section class="py-20 silk-texture-bg text-white text-center">
+    <section class="py-20 silk-texture-bg text-white text-center fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif mb-8">Follow Us</h2>
             <div class="flex justify-center mb-8">
@@ -1575,17 +1509,17 @@
             <div class="flex justify-center space-x-6">
                 <!-- Placeholder for social icons -->
                 <a href="#" class="text-gray-900 hover:text-stone-500 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.013 4.858.072 1.25.06 1.905.253 2.535.549.63.296 1.154.704 1.677 1.227.523.523.931 1.047 1.227 1.677.296.63.489 1.285.549 2.535.059 1.274.072 1.654.072 4.858s-.013 3.584-.072 4.858c-.06 1.25-.253 1.905-.549 2.535-.296.63-.704 1.154-1.227 1.677-.523.523-1.047.931-1.677 1.227-.63.296-1.285.489-2.535.549-1.274.059-1.654.072-4.858.072s-3.584-.013-4.858-.072c-1.25-.06-1.905-.253-2.535-.549-.63-.296-1.154-.704-1.677-1.227-.523-.523-.931-1.047-1.227-1.677-.296-.63-.489-1.285-.549-2.535-.059-1.274-.072-1.654-.072-4.858s.013-3.584.072-4.858c.06-1.25.253-1.905.549-2.535.296-.63.704-1.154 1.227-1.677.523-.523 1.047-.931 1.677-1.227.63-.296 1.285-.489 2.535-.549 1.274-.059 1.654-.072 4.858-.072zM12 9c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.013 4.858.072 1.25.06 1.905.253 2.535.549.63.296 1.154.704 1.677 1.227.523.523.931 1.047 1.227 1.677.296.63.489 1.285.549 2.535.059 1.274.072 1.654.072 4.858s-.013 3.584-.072 4.858c-.06 1.25-.253 1.905-.549 2.535-.296.63-.704 1.154-1.227 1.677-.523.523-.931 1.047-1.677 1.227-.63.296-1.285.489-2.535.549-1.274.059-1.654.072-4.858.072s-3.584-.013-4.858-.072c-1.25-.06-1.905-.253-2.535-.549-.296-.63-.704-1.154-1.677-1.227-.523-.523-.931-1.047-1.227-1.677-.296-.63-.489-1.285-.549-2.535-.059-1.274-.072-1.654-.072-4.858s.013-3.584.072-4.858c.06-1.25.253-1.905.549-2.535.296-.63.704-1.154 1.227-1.677.523-.523 1.047-.931 1.677-1.227.63-.296 1.285-.489 2.535-.549 1.274-.059 1.654-.072 4.858-.072zM12 9c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3z"></path></svg>
                 </a>
                 <a href="#" class="text-gray-900 hover:text-stone-500 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12s5.373 12 12 12c6.627 0 12-5.373 12-12s-5.373-12-12-12zm2.016 16.598l-1.984-1.983c-1.579 1.96-3.832 3.256-6.248 3.553l-1.002-1.003c0.697-0.076 1.385-0.23 2.046-0.457-0.627-1.127-1.077-2.355-1.332-3.668-0.143-0.72-0.222-1.456-0.252-2.203-0.028-0.748-0.028-1.503 0.002-2.253 0.03-0.746 0.106-1.487 0.238-2.215l1.002-1.003c0.165 0.207 0.356 0.407 0.573 0.601 1.706-0.297 3.398-0.589 4.965-0.897l1.003 1.003c-1.285 0.252-2.583 0.505-3.882 0.755 0.592 1.488 1.545 2.809 2.858 3.916 1.312 1.108 2.915 1.868 4.607 2.214l-1.003 1.003c-1.567-0.301-3.076-0.906-4.542-1.802 0.588 1.488 1.545 2.809 2.858 3.916 1.312 1.108 2.915 1.868 4.607 2.214l-1.003 1.003c-1.567-0.301-3.076-0.906-4.542-1.802z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12s5.373 12 12 12c6.627 0 12-5.373 12-12s-5.373-12-12-12zm2.016 16.598l-1.984-1.983c-1.579 1.96-3.832 3.256-6.248 3.553l-1.002-1.003c0.697-0.076 1.385-0.23 2.046-0.457-0.627-1.127-1.077-2.355-1.332-3.668-0.143-0.72-0.222-1.456-0.252-2.203-0.028-0.748-0.028-1.503 0.002-2.253 0.03-0.746 0.106-1.487 0.238-2.215l1.002-1.003c0.165 0.207 0.356 0.407 0.573 0.601 1.706-0.297 3.398-0.589 4.965-0.897l1.003 1.003c-1.285 0.252-2.583 0.505-3.882 0.755 0.592 1.488 1.545 2.809 2.858 3.916 1.312 1.108 2.915 1.868 4.607 2.214l-1.003 1.003c-1.567-0.301-3.076-0.906-4.542-1.802 0.588 1.488 1.545 2.809 2.858 3.916 1.312 1.108 2.915 1.868 4.607 2.214l-1.003 1.003c-1.567-0.301-3.076-0.906-4.542-1.802z"></path></svg>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Customization Section -->
-    <section id="customization" class="py-20 bg-white">
+    <section id="customization" class="py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif mb-4">✨ Customization & Naming</h2>
             <p class="text-sm md:text-base mb-8">Looking for something truly unique? Our experts can help you craft the perfect piece.</p>
@@ -1613,7 +1547,7 @@
     </section>
 
     <!-- AI Product Visualizer Section -->
-    <section id="ai-visualizer" class="py-20 silk-texture-bg text-white">
+    <section id="ai-visualizer" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif mb-4 text-center">AI Product Visualizer</h2>
             <p class="text-sm md:text-base mb-8 text-center">Describe a jewelry piece and choose a style to generate a unique visual.</p>
@@ -1642,7 +1576,7 @@
     </section>
 
     <!-- Contact Us Section -->
-    <section id="contact-us" class="py-20 bg-white">
+    <section id="contact-us" class="py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif mb-4 text-center">Experience 50 Years of Legacy</h2>
             <p class="text-sm md:text-base mb-8 italic text-center">"Step into our world of purity and elegance. Visit Anandsneh Jewellers today."</p>
@@ -1666,7 +1600,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="silk-texture-bg text-white py-12">
+    <footer class="silk-texture-bg text-white py-12 fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- About Column -->
@@ -1712,8 +1646,8 @@
                 <div id="productLoadingSpinner" class="loading-spinner"></div>
             </div>
              <a id="productWhatsappLink" href="#" class="mt-6 button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white mx-auto block w-fit">
-                <div class="btn-txt">Enquire on WhatsApp</div>
-            </a>
+                 <div class="btn-txt">Enquire on WhatsApp</div>
+             </a>
         </div>
     </div>
     
@@ -1887,6 +1821,19 @@
             }, 5000); // Change slide every 5 seconds
         };
 
+        // Intersection Observer for fade-in on scroll
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Stop observing once the element is visible
+                    fadeInObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.2 // Trigger when 20% of the element is visible
+        });
+
         // JavaScript for horizontal carousel scrolling
         function setupCarousel(containerId, prevBtnId, nextBtnId) {
             const container = document.getElementById(containerId);
@@ -1912,20 +1859,6 @@
 
         setupCarousel('category-carousel', 'prev-category', 'next-category');
         
-        // Setup fade-in animations on scroll
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-section');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.2 });
-
-        document.querySelectorAll('.fade-in-section').forEach(section => {
-            observer.observe(section);
-        });
-
         // Get elements for AI functionality
         const productModal = document.getElementById('productModal');
         const productModalTitle = document.getElementById('productModalTitle');
@@ -2124,37 +2057,35 @@
         // Initial page load logic
         window.onload = function() {
             // Loading bar animation
+            const loadingScreen = document.getElementById('loading-screen');
             const loadingBar = document.getElementById('loading-bar');
-            let width = 0;
-            const interval = setInterval(() => {
-                width += 10;
-                loadingBar.style.width = width + '%';
-                if (width >= 100) {
-                    clearInterval(interval);
-                    document.getElementById('loading-screen').classList.add('fade-out');
+            
+            // Immediately start the loading bar animation
+            loadingBar.style.width = '100%';
+
+            // Use transitionend to know when the loading bar animation is done
+            loadingBar.addEventListener('transitionend', () => {
+                // Fade out the loading screen
+                loadingScreen.classList.add('fade-out');
+
+                // After the loading screen fades out, hide it and initialize the rest of the page
+                loadingScreen.addEventListener('transitionend', () => {
+                    loadingScreen.style.display = 'none';
                     document.body.style.overflowY = 'auto'; // Enable scrolling after loading
                     
-                    // Initialize the slider after everything else is ready
+                    // Initialize the hero carousel after loading
                     renderSlider();
                     showSlide(currentSlideIndex);
                     startAutoSlide();
-                }
-            }, 100);
+
+                    // Observe all sections for fade-in effect on scroll
+                    document.querySelectorAll('.fade-in-on-scroll').forEach(section => {
+                        fadeInObserver.observe(section);
+                    });
+
+                }, { once: true }); // Ensure this event listener only runs once
+            }, { once: true });
         };
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-          document.querySelectorAll(".scroll-to-link").forEach(btn => {
-            btn.addEventListener("click", function (e) {
-              e.preventDefault();
-              const targetId = this.getAttribute("href");
-              const target = document.querySelector(targetId);
-              if (target) {
-                target.scrollIntoView({ behavior: "smooth" });
-              }
-            });
-          });
-        });
     </script>
 </body>
 </html>
