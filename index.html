@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anandsneh Jewellers - A Legacy of Trust</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght=300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -73,7 +73,7 @@
         }
 
         .cards:hover > .card:not(:hover) {
-            filter: blur(10px);
+            filter: blur(2px);
             transform: scale(0.9, 0.9);
         }
 
@@ -302,8 +302,8 @@
         
         .btn-txt {
             z-index: 1;
-            font-weight: 800;
-            letter-spacing: 4px;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
         
         .type1::after {
@@ -401,25 +401,6 @@
             font-family: 'Inter', sans-serif;
             letter-spacing: 0.5px;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-        }
-
-        .glass-nav-item::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 100%;
-            width: 100%;
-            height: 100%;
-            transition: 0.6s;
-        }
-
-        .glass-nav-item::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
         }
 
         .glass-nav-item:hover {
@@ -530,11 +511,6 @@
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
-        }
-        .gen-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
         }
 
         /* Loading Screen styles */
@@ -657,6 +633,79 @@
             justify-content: center;
             margin-top: 2rem;
         }
+
+        /* Two Banner Carousel styles */
+        .two-banner-carousel {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            background-color: #000; /* Add a background color for letterboxing */
+        }
+
+        .banner-carousel-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+        
+        .banner-slide {
+            flex-shrink: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .banner-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Changed from cover to contain */
+        }
+
+        .banner-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s ease;
+        }
+
+        .banner-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .banner-arrow.prev {
+            left: 1rem;
+        }
+
+        .banner-arrow.next {
+            right: 1rem;
+        }
+        
+        .about-us-images {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 1024px) {
+            .about-us-images {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+                align-items: center;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -731,9 +780,9 @@
             </div>
             <div id="category-carousel" class="flex space-x-6 overflow-x-scroll scrolling-container pb-4">
                 <!-- Category Card 1 -->
-                <a href="#mens-rings" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/a71801de50c36ed8887abb0108ffb3e62ce1b432/The%20Frecia%20Ring.jpg" alt="Men's Rings" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Men%27s+Rings'">
-                    <h3 class="font-medium text-lg">Men's Rings</h3>
+                <a href="#rings" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/a71801de50c36ed8887abb0108ffb3e62ce1b432/The%20Frecia%20Ring.jpg" alt="Rings" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Men%27s+Rings'">
+                    <h3 class="font-medium text-lg">Rings</h3>
                 </a>
                 <!-- Category Card 2 -->
                 <a href="#necklaces" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
@@ -746,31 +795,26 @@
                     <h3 class="font-medium text-lg">Gold Coins</h3>
                 </a>
                 <!-- Category Card 4 -->
-                <a href="#rings" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/98f5a5d380cc4f81cf027b31e14e52ad6be3a328/The%20Nirvana%20Vanki%20Ring__.jpg" alt="Rings" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Rings'">
-                    <h3 class="font-medium text-lg">Rings</h3>
-                </a>
-                <!-- Category Card 5 -->
                 <a href="#anklets" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
                     <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/11655094dd1f0d20f30fe276d42c4e43406d0a52/The%20Hygge%20Anklet.webp" alt="Anklets" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Anklets'">
                     <h3 class="font-medium text-lg">Anklets</h3>
                 </a>
-                <!-- Category Card 6 -->
+                <!-- Category Card 5 -->
                 <a href="#gold-chains" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
                     <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/d66d998e5bd5c311c02ff342c5ba63222ed38361/The%20Beridze%20Gold%20Chain%20For%20Him.webp" alt="Gold Chains" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Gold+Chains'">
                     <h3 class="font-medium text-lg">Gold Chains</h3>
                 </a>
-                <!-- Category Card 7 -->
+                <!-- Category Card 6 -->
                 <a href="#mangal-sutra" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
                     <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/1f6acfc04c443790279e97a5be8a01cc05c56485/The%20Koyna%20Evil%20Eye%20Mangalsutra__.webp" alt="Mangalsutra" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Mangalsutra'">
                     <h3 class="font-medium text-lg">Mangalsutra</h3>
                 </a>
-                <!-- Category Card 8 -->
-                <a href="#female-bracelets" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/914ca34bf47a1b204b6f0cf6a00bbb9be10f401b/The%20Adalin%20Bracelet__.webp" alt="Female Bracelets" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Female+Bracelets'">
-                    <h3 class="font-medium text-lg">Female Bracelets</h3>
+                <!-- Category Card 7 -->
+                <a href="#bracelets" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/914ca34bf47a1b204b6f0cf6a00bbb9be10f401b/The%20Adalin%20Bracelet__.webp" alt="Bracelets" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Female+Bracelets'">
+                    <h3 class="font-medium text-lg">Bracelets</h3>
                 </a>
-                <!-- Category Card 9 -->
+                <!-- Category Card 8 -->
                 <a href="#watch-ornaments" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
                     <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/0f1ecb20eb24f5d00ddd2454862f8cb2334b5520/The%20Cloe%20Mutliwearable%20Watch%20Band__.webp" alt="Watch Ornaments" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Watch+Ornaments'">
                     <h3 class="font-medium text-lg">Watch Ornaments</h3>
@@ -779,6 +823,34 @@
         </div>
     </section>
     
+    <!-- Two Banner Section -->
+    <section id="banner-section" class="two-banner-carousel">
+        <div class="relative overflow-hidden w-full h-full">
+            <div id="banner-carousel-container" class="banner-carousel-container">
+                <div class="banner-slide">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/a1c70a4bd4e04001a21651006d9ffcc1329409e6/1758420556409.jpg" alt="Bold Gold" class="w-full h-full" onerror="this.src='https://placehold.co/1080x720/e3e0dc/424242?text=Bold+Gold+Collection'">
+                </div>
+                <div class="banner-slide">
+                     <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/a1c70a4bd4e04001a21651006d9ffcc1329409e6/1758420627281.jpg" alt="Checkmate Collection" class="w-full h-full" onerror="this.src='https://placehold.co/1080x720/e3e0dc/424242?text=Checkmate+Collection'">
+                </div>
+                 <div class="banner-slide">
+                     <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/a1c70a4bd4e04001a21651006d9ffcc1329409e6/1758420661837.jpg" alt="Barbie Collection" class="w-full h-full" onerror="this.src='https://placehold.co/1080x720/e3e0dc/424242?text=Barbie+Collection'">
+                </div>
+            </div>
+            <!-- Manual navigation arrows -->
+            <button id="prev-banner" class="banner-arrow prev">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <button id="next-banner" class="banner-arrow next">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+    </section>
+
     <!-- About Us Section -->
     <section id="about-us" class="py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
@@ -793,13 +865,17 @@
                         At Anandsneh Jewellers, we believe jewellery should be a true reflection of personal style and elegance. Our luxurious, modern designs are a blend of high-quality craftsmanship and ethical sourcing, ensuring that each piece not only looks stunning but is also responsibly made. We pride ourselves on celebrating individuality while forming meaningful connections with our valued customers.
                     </p>
                 </div>
-                <!-- New Image Grid for About Us -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-517237166-612x612.jpg" alt="A family shopping for jewelry" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Family+Shopping'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-691898268-612x612.jpg" alt="A craftsman working on jewelry" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Craftsman'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-1427466115-612x612.jpg" alt="A woman wearing a necklace" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Woman+Wearing+Jewelry'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/segal-jewelry-NsH-CvU0deg-unsplash.jpg" alt="Editorial Shot 1" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Editorial+Shot+1'">
+                <!-- Updated Image Layout for About Us Section -->
+                <div class="about-us-images">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-517237166-612x612.jpg" alt="A family shopping for jewelry" class="rounded-lg shadow-lg w-full" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Family+Shopping'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-691898268-612x612.jpg" alt="A craftsman working on jewelry" class="rounded-lg shadow-lg w-full" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Craftsman'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-1427466115-612x612.jpg" alt="A woman wearing a necklace" class="rounded-lg shadow-lg w-full" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Woman+Wearing+Jewelry'">
                 </div>
+            </div>
+            <div class="flex justify-center mt-8">
+                 <a href="catalog.html" class="button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white">
+                    <div class="btn-txt">Browse all Collections</div>
+                </a>
             </div>
         </div>
     </section>
@@ -842,65 +918,68 @@
         </div>
     </section>
 
-    <!-- Men's Rings Section -->
-    <section id="mens-rings" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
+    <!-- Rings Section -->
+    <section id="rings" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Men's Rings</h2>
-            <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Product Card 1 -->
-                <div class="card" onclick="showProductDetails('The Frecia Ring')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div class="card__badge bg-stone-500">NEW</div>
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/a71801de50c36ed8887abb0108ffb3e62ce1b432/The%20Frecia%20Ring.jpg')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Frecia Ring</p>
-                            <p class="card__description text-gray-500">Exquisite diamond design</p>
+            <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Rings</h2>
+            <div class="flex justify-center">
+                <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Product Card 1 -->
+                    <div class="card" onclick="showProductDetails('The Frecia Ring')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div class="card__badge bg-stone-500">NEW</div>
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/a71801de50c36ed8887abb0108ffb3e62ce1b432/The%20Frecia%20Ring.jpg')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">The Frecia Ring</p>
+                                <p class="card__description text-gray-500">Exquisite diamond design</p>
+                            </div>
+                            <div class="card__footer">
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
-                        <div class="card__footer">
-                             <a href="#" class="card__button">
-                                 <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                             </a>
+                    </div>
+                    <!-- Product Card 2 -->
+                    <div class="card" onclick="showProductDetails('The Giana Ring')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div class="card__badge bg-stone-500">NEW</div>
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/edc1b13c6182114ec0b5194e5619fa44d48dd30f/The%20Giana%20Ring.jpeg')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">The Giana Ring</p>
+                                <p class="card__description text-gray-500">Exquisite diamond design</p>
+                            </div>
+                            <div class="card__footer">
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="card" onclick="showProductDetails('The Peacock Vivacity Ring')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div class="card__badge bg-stone-500">NEW</div>
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/df114d1f085e30c94ba1b007d591299fe4daa30e/The%20Peacock%20Vivacity%20Ring_.jpg')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">The Peacock Vivacity Ring</p>
+                                <p class="card__description text-gray-500">Exquisite diamond design</p>
+                            </div>
+                            <div class="card__footer">
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- Product Card 2 -->
-                <div class="card" onclick="showProductDetails('The Giana Ring')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div class="card__badge bg-stone-500">NEW</div>
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/edc1b13c6182114ec0b5194e5619fa44d48dd30f/The%20Giana%20Ring.jpeg')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Giana Ring</p>
-                            <p class="card__description text-gray-500">Exquisite diamond design</p>
-                        </div>
-                        <div class="card__footer">
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product Card 3 -->
-                <div class="card" onclick="showProductDetails('The Peacock Vivacity Ring')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div class="card__badge bg-stone-500">NEW</div>
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/df114d1f085e30c94ba1b007d591299fe4daa30e/The%20Peacock%20Vivacity%20Ring_.jpg')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Peacock Vivacity Ring</p>
-                            <p class="card__description text-gray-500">Exquisite diamond design</p>
-                        </div>
-                        <div class="card__footer">
-                             <a href="#" class="card__button">
-                                 <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                             </a>
-                        </div>
-                    </div>
-                </div>
+            </div>
             <div class="explore-more-btn-container">
                 <a href="catalog.html" class="button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white">
                     <div class="btn-txt">Explore More</div>
@@ -913,64 +992,67 @@
     <section id="necklaces" class="py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Necklaces</h2>
-            <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Product Card 1 -->
-                <div class="card" onclick="showProductDetails('The Flutter And Floral Kids Necklace')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div class="card__badge bg-stone-500">NEW</div>
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/ed31d4388671e40ceb2ab6dd8da70aa95d37cf6c/The%20Flutter%20And%20Floral%20Kids%20Necklace__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Flutter And Floral Kids Necklace</p>
-                            <p class="class="card__description text-gray-500">Exquisite diamond design</p>
+            <div class="flex justify-center">
+                <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Product Card 1 -->
+                    <div class="card" onclick="showProductDetails('The Flutter And Floral Kids Necklace')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div class="card__badge bg-stone-500">NEW</div>
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/ed31d4388671e40ceb2ab6dd8da70aa95d37cf6c/The%20Flutter%20And%20Floral%20Kids%20Necklace__.webp')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">The Flutter And Floral Kids Necklace</p>
+                                <p class="class="card__description text-gray-500">Exquisite diamond design</p>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__price text-gray-900">₹28,780</div>
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">₹28,780</div>
-                             <a href="#" class="card__button">
-                                 <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                             </a>
+                    </div>
+                    <!-- Product Card 2 -->
+                    <div class="card" onclick="showProductDetails('The Inez Bar Necklace')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div class="card__badge bg-stone-500">NEW</div>
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/90d864604a65df528cfdbb442e478d25f89716f8/The%20Inez%20Bar%20Necklace__.webp')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">The Inez Bar Necklace</p>
+                                <p class="card__description text-gray-500">Exquisite diamond design</p>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__price text-gray-900">₹90,813</div>
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="card" onclick="showProductDetails('The Flair Necklace')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div class="card__badge bg-stone-500">NEW</div>
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/d5b34a9c094c8c1b38c765ab606ce40b1a44fcb3/The%20Flair%20Necklace__.webp')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">The Flair Necklace</p>
+                                <p class="card__description text-gray-500">Exquisite diamond design</p>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__price text-gray-900">₹70,121</div>
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- Product Card 2 -->
-                <div class="card" onclick="showProductDetails('The Inez Bar Necklace')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div class="card__badge bg-stone-500">NEW</div>
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/90d864604a65df528cfdbb442e478d25f89716f8/The%20Inez%20Bar%20Necklace__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Inez Bar Necklace</p>
-                            <p class="card__description text-gray-500">Exquisite diamond design</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">₹90,813</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product Card 3 -->
-                <div class="card" onclick="showProductDetails('The Flair Necklace')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div class="card__badge bg-stone-500">NEW</div>
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/d5b34a9c094c8c1b38c765ab606ce40b1a44fcb3/The%20Flair%20Necklace__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Flair Necklace</p>
-                            <p class="card__description text-gray-500">Exquisite diamond design</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">₹70,121</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            </div>
             <div class="explore-more-btn-container">
                 <a href="catalog.html" class="button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white">
                     <div class="btn-txt">Explore More</div>
@@ -983,129 +1065,64 @@
     <section id="gold-coins" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Gold Coins</h2>
-            <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Product Card 1 -->
-                <div class="card" onclick="showProductDetails('10 gram 24 KT Lakshmi Gold Coin')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/fb243249c47cf5ab7c559812004515ff14b57e94/10%20gram%2024%20KT%20Lakshmi%20Gold%20Coin__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">10 gram 24 KT Lakshmi Gold Coin</p>
-                            <p class="card__description text-gray-500">Exquisite gold coin</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product Card 2 -->
-                <div class="card" onclick="showProductDetails('2 gram 24 KT Ganesh Gold Coin')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/608ad9124484a2d2d148700336c10c4e7026aceb/2%20gram%2024%20KT%20Ganesh%20Gold%20Coin__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">2 gram 24 KT Ganesh Gold Coin</p>
-                            <p class="card__description text-gray-500">Exquisite gold coin</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
+            <div class="flex justify-center">
+                <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Product Card 1 -->
+                    <div class="card" onclick="showProductDetails('10 gram 24 KT Lakshmi Gold Coin')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/fb243249c47cf5ab7c559812004515ff14b57e94/10%20gram%2024%20KT%20Lakshmi%20Gold%20Coin__.webp')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">10 gram 24 KT Lakshmi Gold Coin</p>
+                                <p class="card__description text-gray-500">Exquisite gold coin</p>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__price text-gray-900">Price on request</div>
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Product Card 3 -->
-                <div class="card" onclick="showProductDetails('1 gram 24 KT Krishna Gold Coin')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/e43d6988ab7357924f7335757d1eba19cd431b7e/1%20gram%2024%20KT%20Krishna%20Gold%20Coin__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">1 gram 24 KT Krishna Gold Coin</p>
-                            <p class="card__description text-gray-500">Exquisite gold coin</p>
+                    <!-- Product Card 2 -->
+                    <div class="card" onclick="showProductDetails('2 gram 24 KT Ganesh Gold Coin')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/608ad9124484a2d2d148700336c10c4e7026aceb/2%20gram%2024%20KT%20Ganesh%20Gold%20Coin__.webp')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">2 gram 24 KT Ganesh Gold Coin</p>
+                                <p class="card__description text-gray-500">Exquisite gold coin</p>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__price text-gray-900">Price on request</div>
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="card" onclick="showProductDetails('1 gram 24 KT Krishna Gold Coin')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/e43d6988ab7357924f7335757d1eba19cd431b7e/1%20gram%2024%20KT%20Krishna%20Gold%20Coin__.webp')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">1 gram 24 KT Krishna Gold Coin</p>
+                                <p class="card__description text-gray-500">Exquisite gold coin</p>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__price text-gray-900">Price on request</div>
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="explore-more-btn-container">
-                <a href="catalog.html" class="button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white">
-                    <div class="btn-txt">Explore More</div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Rings Section -->
-    <section id="rings" class="py-20 bg-white fade-in-on-scroll">
-        <div class="container mx-auto px-4 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Rings</h2>
-            <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Product Card 1 -->
-                <div class="card" onclick="showProductDetails('The Nirvana Vanki Ring')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/98f5a5d380cc4f81cf027b31e14e52ad6be3a328/The%20Nirvana%20Vanki%20Ring__.jpg')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Nirvana Vanki Ring</p>
-                            <p class="card__description text-gray-500">Exquisite diamond design</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product Card 2 -->
-                <div class="card" onclick="showProductDetails('The Mistee Band Ring')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/98f5a5d380cc4f81cf027b31e14e52ad6be3a328/The%20Mistee%20Band%20Ring__.jpg')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Mistee Band Ring</p>
-                            <p class="card__description text-gray-500">Exquisite diamond design</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product Card 3 -->
-                <div class="card" onclick="showProductDetails('The Francoise Chevron Ring')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/96917b842caa9fb512e3b5ff78642c8b2487673f/The%20Francoise%20Chevron%20Ring__.jpg')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Francoise Chevron Ring</p>
-                            <p class="card__description text-gray-500">Exquisite diamond design</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
             <div class="explore-more-btn-container">
                 <a href="catalog.html" class="button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white">
                     <div class="btn-txt">Explore More</div>
@@ -1115,61 +1132,63 @@
     </section>
 
     <!-- Anklets Section -->
-    <section id="anklets" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
+    <section id="anklets" class="py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Anklets</h2>
-            <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Product Card 1 -->
-                <div class="card" onclick="showProductDetails('The Hygge Anklet')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/11655094dd1f0d20f30fe276d42c4e43406d0a52/The%20Hygge%20Anklet.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Hygge Anklet</p>
-                            <p class="card__description text-gray-500">Exquisite diamond design</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product Card 2 -->
-                <div class="card" onclick="showProductDetails('The Aurore Anklet')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/2f87c350d8b0e1bf2e342e5d11e2e60e38751343/The%20Aurore%20Anklet__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Aurore Anklet</p>
-                            <p class="card__description text-gray-500">Exquisite diamond design</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
+            <div class="flex justify-center">
+                <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Product Card 1 -->
+                    <div class="card" onclick="showProductDetails('The Hygge Anklet')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/11655094dd1f0d20f30fe276d42c4e43406d0a52/The%20Hygge%20Anklet.webp')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">The Hygge Anklet</p>
+                                <p class="card__description text-gray-500">Exquisite diamond design</p>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__price text-gray-900">Price on request</div>
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Product Card 3 -->
-                <div class="card" onclick="showProductDetails('The Sinag Anklet')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/3e853c3ad7116c909dc632ac6fdff5b15aa2fb17/The%20Sinag%20Anklet.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Sinag Anklet</p>
-                            <p class="card__description text-gray-500">Exquisite diamond design</p>
+                    <!-- Product Card 2 -->
+                    <div class="card" onclick="showProductDetails('The Aurore Anklet')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/2f87c350d8b0e1bf2e342e5d11e2e60e38751343/The%20Aurore%20Anklet__.webp')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">The Aurore Anklet</p>
+                                <p class="card__description text-gray-500">Exquisite diamond design</p>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__price text-gray-900">Price on request</div>
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="card" onclick="showProductDetails('The Sinag Anklet')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/3e853c3ad7116c909dc632ac6fdff5b15aa2fb17/The%20Sinag%20Anklet.webp')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">The Sinag Anklet</p>
+                                <p class="card__description text-gray-500">Exquisite diamond design</p>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__price text-gray-900">Price on request</div>
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1183,61 +1202,63 @@
     </section>
 
     <!-- Gold Chains Section -->
-    <section id="gold-chains" class="py-20 bg-white fade-in-on-scroll">
+    <section id="gold-chains" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Gold Chains</h2>
-            <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Product Card 1 -->
-                <div class="card" onclick="showProductDetails('The Beridze Gold Chain For Him')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/d66d998e5bd5c311c02ff342c5ba63222ed38361/The%20Beridze%20Gold%20Chain%20For%20Him.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Beridze Gold Chain For Him</p>
-                            <p class="card__description text-gray-500">Exquisite gold chain</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product Card 2 -->
-                <div class="card" onclick="showProductDetails('The Abiral Gold Chain')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/9e089266c4fb2851eb6958472f61048236919f00/The%20Abiral%20Gold%20Chain__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Abiral Gold Chain</p>
-                            <p class="card__description text-gray-500">Exquisite gold chain</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
+            <div class="flex justify-center">
+                <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Product Card 1 -->
+                    <div class="card" onclick="showProductDetails('The Beridze Gold Chain For Him')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/d66d998e5bd5c311c02ff342c5ba63222ed38361/The%20Beridze%20Gold%20Chain%20For%20Him.webp')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">The Beridze Gold Chain For Him</p>
+                                <p class="card__description text-gray-500">Exquisite gold chain</p>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__price text-gray-900">Price on request</div>
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Product Card 3 -->
-                <div class="card" onclick="showProductDetails('The Rolfo Gold Chain')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/1d4b6dbe02d816484b92013df4d7e3482e5a3ca/The%20Rolfo%20Gold%20Chain__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Rolfo Gold Chain</p>
-                            <p class="card__description text-gray-500">Exquisite gold chain</p>
+                    <!-- Product Card 2 -->
+                    <div class="card" onclick="showProductDetails('The Abiral Gold Chain')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/9e089266c4fb2851eb6958472f61048236919f00/The%20Abiral%20Gold%20Chain__.webp')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">The Abiral Gold Chain</p>
+                                <p class="card__description text-gray-500">Exquisite gold chain</p>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__price text-gray-900">Price on request</div>
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="card" onclick="showProductDetails('The Elijah Gold Chain')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/d5b34a9c094c8c1b38c765ab606ce40b1a44fcb3/The%20Elijah%20Gold%20Chain.webp')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">The Elijah Gold Chain</p>
+                                <p class="card__description text-gray-500">Exquisite gold chain</p>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__price text-gray-900">Price on request</div>
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1251,61 +1272,63 @@
     </section>
 
     <!-- Mangalsutra Section -->
-    <section id="mangal-sutra" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
+    <section id="mangal-sutra" class="py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Mangalsutra</h2>
-            <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Product Card 1 -->
-                <div class="card" onclick="showProductDetails('The Koyna Evil Eye Mangalsutra')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/1f6acfc04c443790279e97a5be8a01cc05c56485/The%20Koyna%20Evil%20Eye%20Mangalsutra__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Koyna Evil Eye Mangalsutra</p>
-                            <p class="card__description text-gray-500">Exquisite mangalsutra</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product Card 2 -->
-                <div class="card" onclick="showProductDetails('The Saija Mangalsutra Pendant')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/1b8027469d84fd717c74afba5c4e64b9de08e0ac/The%20Saija%20Mangalsutra%20Pendant__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Saija Mangalsutra Pendant</p>
-                            <p class="card__description text-gray-500">Exquisite mangalsutra</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
+            <div class="flex justify-center">
+                <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Product Card 1 -->
+                    <div class="card" onclick="showProductDetails('The Koyna Evil Eye Mangalsutra')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/1f6acfc04c443790279e97a5be8a01cc05c56485/The%20Koyna%20Evil%20Eye%20Mangalsutra__.webp')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">The Koyna Evil Eye Mangalsutra</p>
+                                <p class="card__description text-gray-500">Exquisite mangalsutra</p>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__price text-gray-900">Price on request</div>
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Product Card 3 -->
-                <div class="card" onclick="showProductDetails('The Aadarshini Mangalsutra Pendant')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/ffc0050e475b4a67c904a792994c1f4e87d1ab05/The%20Aadarshini%20Mangalsutra%20Pendant__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Aadarshini Mangalsutra Pendant</p>
-                            <p class="card__description text-gray-500">Exquisite mangalsutra</p>
+                    <!-- Product Card 2 -->
+                    <div class="card" onclick="showProductDetails('The Saija Mangalsutra Pendant')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/1b8027469d84fd717c74afba5c4e64b9de08e0ac/The%20Saija%20Mangalsutra%20Pendant__.webp')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">The Saija Mangalsutra Pendant</p>
+                                <p class="card__description text-gray-500">Exquisite mangalsutra</p>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__price text-gray-900">Price on request</div>
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="card" onclick="showProductDetails('The Aadarshini Mangalsutra Pendant')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/ffc0050e475b4a67c904a792994c1f4e87d1ab05/The%20Aadarshini%20Mangalsutra%20Pendant__.webp')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">The Aadarshini Mangalsutra Pendant</p>
+                                <p class="card__description text-gray-500">Exquisite mangalsutra</p>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__price text-gray-900">Price on request</div>
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1318,62 +1341,64 @@
         </div>
     </section>
 
-    <!-- Female Bracelets Section -->
-    <section id="female-bracelets" class="py-20 bg-white fade-in-on-scroll">
+    <!-- Bracelets Section -->
+    <section id="bracelets" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Female Bracelets</h2>
-            <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Product Card 1 -->
-                <div class="card" onclick="showProductDetails('The Adalin Bracelet')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/914ca34bf47a1b204b6f0cf6a00bbb9be10f401b/The%20Adalin%20Bracelet__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Adalin Bracelet</p>
-                            <p class="card__description text-gray-500">Exquisite bracelet</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product Card 2 -->
-                <div class="card" onclick="showProductDetails('The Eiffel Bracelet')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/3aa945d0621c0656949908e3fc0ada2d5448309c/The%20Eiffel%20Bracelet__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Eiffel Bracelet</p>
-                            <p class="card__description text-gray-500">Exquisite bracelet</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
+            <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Bracelets</h2>
+            <div class="flex justify-center">
+                <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Product Card 1 -->
+                    <div class="card" onclick="showProductDetails('The Adalin Bracelet')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/914ca34bf47a1b204b6f0cf6a00bbb9be10f401b/The%20Adalin%20Bracelet__.webp')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">The Adalin Bracelet</p>
+                                <p class="card__description text-gray-500">Exquisite bracelet</p>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__price text-gray-900">Price on request</div>
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Product Card 3 -->
-                <div class="card" onclick="showProductDetails('The Melene Evil Eye Bracelet')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/f100e33638330f55bee7a12348fbd17ee6cb541e/The%20Melene%20Evil%20Eye%20Bracelet__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Melene Evil Eye Bracelet</p>
-                            <p class="card__description text-gray-500">Exquisite bracelet</p>
+                    <!-- Product Card 2 -->
+                    <div class="card" onclick="showProductDetails('The Eiffel Bracelet')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/3aa945d0621c0656949908e3fc0ada2d5448309c/The%20Eiffel%20Bracelet__.webp')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">The Eiffel Bracelet</p>
+                                <p class="card__description text-gray-500">Exquisite bracelet</p>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__price text-gray-900">Price on request</div>
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="card" onclick="showProductDetails('The Melene Evil Eye Bracelet')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/f100e33638330f55bee7a12348fbd17ee6cb541e/The%20Melene%20Evil%20Eye%20Bracelet__.webp')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">The Melene Evil Eye Bracelet</p>
+                                <p class="card__description text-gray-500">Exquisite bracelet</p>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__price text-gray-900">Price on request</div>
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1387,61 +1412,63 @@
     </section>
 
     <!-- Watch Ornaments Section -->
-    <section id="watch-ornaments" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
+    <section id="watch-ornaments" class="py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Watch Ornaments</h2>
-            <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Product Card 1 -->
-                <div class="card" onclick="showProductDetails('The Cloe Mutliwearable Watch Band')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/0f1ecb20eb24f5d00ddd2454862f8cb2334b5520/The%20Cloe%20Mutliwearable%20Watch%20Band__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Cloe Mutliwearable Watch Band</p>
-                            <p class="card__description text-gray-500">Exquisite watch ornament</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product Card 2 -->
-                <div class="card" onclick="showProductDetails('The Arkasa Watch Band')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/cef48777500954371669b973ff458d74bc2f70f0/The%20Arkasa%20Watch%20Band__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Arkasa Watch Band</p>
-                            <p class="card__description text-gray-500">Exquisite watch ornament</p>
-                        </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
+            <div class="flex justify-center">
+                <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Product Card 1 -->
+                    <div class="card" onclick="showProductDetails('The Cloe Mutliwearable Watch Band')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/0f1ecb20eb24f5d00ddd2454862f8cb2334b5520/The%20Cloe%20Mutliwearable%20Watch%20Band__.webp')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">The Cloe Mutliwearable Watch Band</p>
+                                <p class="card__description text-gray-500">Exquisite watch ornament</p>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__price text-gray-900">Price on request</div>
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Product Card 3 -->
-                <div class="card" onclick="showProductDetails('The Love Script Watch Band')">
-                    <div class="card__shine"></div>
-                    <div class="card__glow"></div>
-                    <div class="card__content">
-                        <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/b7647037018fcc1cf27e871ee858507b80267455/The%20Love%20Script%20Watch%20Band__.webp')" class="card__image"></div>
-                        <div class="card__text">
-                            <p class="card__title">The Love Script Watch Band</p>
-                            <p class="card__description text-gray-500">Exquisite watch ornament</p>
+                    <!-- Product Card 2 -->
+                    <div class="card" onclick="showProductDetails('The Arkasa Watch Band')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/cef48777500954371669b973ff458d74bc2f70f0/The%20Arkasa%20Watch%20Band__.webp')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">The Arkasa Watch Band</p>
+                                <p class="card__description text-gray-500">Exquisite watch ornament</p>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__price text-gray-900">Price on request</div>
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
-                        <div class="card__footer">
-                            <div class="card__price text-gray-900">Price on request</div>
-                            <a href="#" class="card__button">
-                                <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
-                            </a>
+                    </div>
+                    <!-- Product Card 3 -->
+                    <div class="card" onclick="showProductDetails('The Love Script Watch Band')">
+                        <div class="card__shine"></div>
+                        <div class="card__glow"></div>
+                        <div class="card__content">
+                            <div style="background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/b7647037018fcc1cf27e871ee858507b80267455/The%20Love%20Script%20Watch%20Band__.webp')" class="card__image"></div>
+                            <div class="card__text">
+                                <p class="card__title">The Love Script Watch Band</p>
+                                <p class="card__description text-gray-500">Exquisite watch ornament</p>
+                            </div>
+                            <div class="card__footer">
+                                <div class="card__price text-gray-900">Price on request</div>
+                                <a href="#" class="card__button">
+                                    <svg height="16" width="16" viewBox="0 0 24 24"><path stroke-width="2" stroke="currentColor" d="M4 12H20M12 4V20" fill="currentColor"></path></svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1546,35 +1573,6 @@
         </div>
     </section>
 
-    <!-- AI Product Visualizer Section -->
-    <section id="ai-visualizer" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
-        <div class="container mx-auto px-4 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-serif mb-4 text-center">AI Product Visualizer</h2>
-            <p class="text-sm md:text-base mb-8 text-center">Describe a jewelry piece and choose a style to generate a unique visual.</p>
-            <div class="flex justify-center">
-                <form id="imageGenForm" class="w-full max-w-xl space-y-4">
-                    <input type="text" id="imagePrompt" placeholder="Describe the jewelry (e.g., a golden ring with a large emerald stone)" class="w-full p-3 rounded-full text-black focus:outline-none focus:ring-2 focus:ring-stone-500">
-                    <select id="imageStyle" class="w-full p-3 rounded-full text-black focus:outline-none focus:ring-2 focus:ring-stone-500">
-                        <option value="studio shot" selected>Studio Shot</option>
-                        <option value="lifestyle photo">Lifestyle Photo</option>
-                        <option value="abstract art">Abstract Art</option>
-                        <option value="on a velvet cushion">On a Velvet Cushion</option>
-                    </select>
-                    <button type="submit" class="w-full button type1 text-white hover:text-black">
-                        <div class="btn-txt">Generate Image</div>
-                    </button>
-                </form>
-            </div>
-            <div id="imageResult" class="mt-8 p-6 bg-gray-100 rounded-lg shadow-lg hidden">
-                <div id="imageLoading" class="loading-spinner"></div>
-                <img id="generatedImage" class="gen-image hidden" alt="AI Generated Product Image" onerror="this.src='https://placehold.co/400x400/e3e0dc/424242?text=Image+Failed'">
-                <button id="shareImageBtn" class="mt-4 button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white hidden">
-                    <div class="btn-txt">Share on WhatsApp</div>
-                </button>
-            </div>
-        </div>
-    </section>
-
     <!-- Contact Us Section -->
     <section id="contact-us" class="py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
@@ -1645,9 +1643,9 @@
             <div id="productModalContent" class="text-base text-black">
                 <div id="productLoadingSpinner" class="loading-spinner"></div>
             </div>
-             <a id="productWhatsappLink" href="#" class="mt-6 button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white mx-auto block w-fit">
-                 <div class="btn-txt">Enquire on WhatsApp</div>
-             </a>
+            <a id="productWhatsappLink" href="#" class="mt-10 button type1 text-black text bg-gray-200 hover:bg-stone-500 hover:text-white mx-auto block w-fit">
+                <div class="btn-txt">Enquire on WhatsApp</div>
+            </a>
         </div>
     </div>
     
@@ -1691,21 +1689,21 @@
                 title: "Discover Your Sparkle",
                 description: "Experience the brilliance of jewelry and find the perfect piece for your special moments.",
                 bgImage: "https://raw.githubusercontent.com/shreyanshdxt04/storeimages/6d701bd62a67873039d0dfae8ad909ff5f1460a7/Gemini_Generated_Image_3j44s33j44s33j44.png",
-                button1: { text: "Shop Now", classes: "shop-now-button", href: "#mens-rings" },
+                button1: { text: "Shop Now", classes: "shop-now-button", href: "#rings" },
                 button2: { text: "Explore", classes: "button type1", href: "#categories" }
             },
             {
                 title: "Timeless Elegance",
                 description: "Our heritage is crafted into every piece. Discover the legacy of our master jewelers.",
                 bgImage: "https://raw.githubusercontent.com/shreyanshdxt04/storeimages/ac718d8c9c4450c1d406e623045df604e47e7ed1/1758057288803.jpg",
-                button1: { text: "Shop Now", classes: "shop-now-button", href: "#mens-rings" },
+                button1: { text: "Shop Now", classes: "shop-now-button", href: "#rings" },
                 button2: { text: "Explore", classes: "button type1", href: "#categories" }
             },
             {
                 title: "Crafted for You",
                 description: "Bring your vision to life with our customization services. Design a piece as unique as you are.",
                 bgImage: "https://raw.githubusercontent.com/shreyanshdxt04/storeimages/ac718d8c9c4450c1d406e623045df604e47e7ed1/1758057846614.jpg",
-                button1: { text: "Shop Now", classes: "shop-now-button", href: "#mens-rings" },
+                button1: { text: "Shop Now", classes: "shop-now-button", href: "#rings" },
                 button2: { text: "Explore", classes: "button type1", href: "#categories" }
             }
         ];
@@ -1826,7 +1824,6 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    // Stop observing once the element is visible
                     fadeInObserver.unobserve(entry.target);
                 }
             });
@@ -1839,16 +1836,13 @@
             const container = document.getElementById(containerId);
             const prevBtn = document.getElementById(prevBtnId);
             const nextBtn = document.getElementById(nextBtnId);
-
             if (!container || !prevBtn || !nextBtn) return;
-
             nextBtn.addEventListener('click', () => {
                 container.scrollBy({
                     left: 300,
                     behavior: 'smooth'
                 });
             });
-
             prevBtn.addEventListener('click', () => {
                 container.scrollBy({
                     left: -300,
@@ -1856,7 +1850,6 @@
                 });
             });
         }
-
         setupCarousel('category-carousel', 'prev-category', 'next-category');
         
         // Get elements for AI functionality
@@ -1871,11 +1864,6 @@
         const namingResult = document.getElementById('namingResult');
         const namingLoading = document.getElementById('namingLoading');
         const namingText = document.getElementById('namingText');
-        const imageGenForm = document.getElementById('imageGenForm');
-        const imageResult = document.getElementById('imageResult');
-        const imageLoading = document.getElementById('imageLoading');
-        const generatedImage = document.getElementById('generatedImage');
-        const shareImageBtn = document.getElementById('shareImageBtn');
         const smoothScrollLinks = document.querySelectorAll('.scroll-to-link');
 
         // Add smooth scrolling to all links with the 'scroll-to-link' class
@@ -2002,57 +1990,48 @@
             }
         });
 
-        // Handle the image generation form submission
-        imageGenForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            imageResult.classList.remove('hidden');
-            imageLoading.classList.remove('hidden');
-            generatedImage.classList.add('hidden');
-            shareImageBtn.classList.add('hidden');
+        // Two-Banner Carousel Logic
+        const bannerSection = document.getElementById('banner-section');
+        const bannerCarousel = document.getElementById('banner-carousel-container');
+        const prevBannerBtn = document.getElementById('prev-banner');
+        const nextBannerBtn = document.getElementById('next-banner');
+        let bannerIndex = 0;
+        let bannerInterval;
 
-            const prompt = document.getElementById('imagePrompt').value;
-            const style = document.getElementById('imageStyle').value;
-            const fullPrompt = `professional product photography of a high-end jewelry piece, on a black background, with studio lighting, showcasing intricate details: a ${prompt}`;
-            
-            const key = "AIzaSyDYst8nrPa1yyy6kU-egJtdsvf_aaBhyxw";
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${key}`;
+        const bannerSlides = () => document.querySelectorAll('#banner-carousel-container .banner-slide');
 
-            const payload = { 
-                instances: [{ prompt: fullPrompt }],
-                parameters: { "sampleCount": 1 }
-            };
+        const updateBannerCarousel = () => {
+            const width = bannerCarousel.offsetWidth;
+            const newPosition = -width * bannerIndex;
+            bannerCarousel.style.transform = `translateX(${newPosition}px)`;
+        };
 
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                
-                const result = await response.json();
-                const base64Data = result?.predictions?.[0]?.bytesBase64Encoded;
+        const showNextBanner = () => {
+            bannerIndex = (bannerIndex + 1) % bannerSlides().length;
+            updateBannerCarousel();
+        };
 
-                imageLoading.classList.add('hidden');
-                if (base64Data) {
-                    const imageUrl = `data:image/png;base64,${base64Data}`;
-                    generatedImage.src = imageUrl;
-                    generatedImage.classList.remove('hidden');
-                    shareImageBtn.classList.remove('hidden');
+        const showPrevBanner = () => {
+            bannerIndex = (bannerIndex - 1 + bannerSlides().length) % bannerSlides().length;
+            updateBannerCarousel();
+        };
 
-                    shareImageBtn.onclick = () => {
-                        window.open(`https://wa.me/?text=Check out this custom jewelry design I created: ${encodeURIComponent(imageUrl)}`, '_blank');
-                    };
-                } else {
-                    generatedImage.src = 'https://placehold.co/400x400/e3e0dc/424242?text=Image+Failed';
-                    generatedImage.classList.remove('hidden');
-                }
-            } catch (error) {
-                console.error("API Call failed:", error);
-                imageLoading.classList.add('hidden');
-                generatedImage.src = 'https://placehold.co/400x400/e3e0dc/424242?text=Error+Generating+Image';
-                generatedImage.classList.remove('hidden');
-            }
+        const startBannerAutoSlide = () => {
+            clearInterval(bannerInterval);
+            bannerInterval = setInterval(showNextBanner, 3000);
+        };
+
+        prevBannerBtn.addEventListener('click', () => {
+            showPrevBanner();
+            startBannerAutoSlide();
         });
+        
+        nextBannerBtn.addEventListener('click', () => {
+            showNextBanner();
+            startBannerAutoSlide();
+        });
+        
+        window.addEventListener('resize', updateBannerCarousel);
 
         // Initial page load logic
         window.onload = function() {
@@ -2077,6 +2056,10 @@
                     renderSlider();
                     showSlide(currentSlideIndex);
                     startAutoSlide();
+
+                    // Start the two-banner carousel
+                    updateBannerCarousel();
+                    startBannerAutoSlide();
 
                     // Observe all sections for fade-in effect on scroll
                     document.querySelectorAll('.fade-in-on-scroll').forEach(section => {
