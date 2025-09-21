@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anandsneh Jewellers - A Legacy of Trust</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap">
+    </noscript>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -712,7 +717,7 @@
 
     <!-- Loading Screen -->
     <div id="loading-screen" class="flex flex-col justify-center items-center fixed inset-0 z-[1000] bg-black transition-opacity duration-[5000ms]">
-        <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/fdd4fc36d94b1353a5a24bba90fe555fc6a6b100/Gemini_Generated_Image_dggmmddggmmddggm%20(1)%20(2).png" alt="Loading Logo" class="w-48 mb-8 loading-logo">
+        <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/fdd4fc36d94b1353a5a24bba90fe555fc6a6b100/Gemini_Generated_Image_dggmmddggmmddggm%20(1)%20(2).png" alt="Anandsneh Jewellers Logo" class="w-48 mb-8 loading-logo">
         <div class="w-56 h-1 bg-gray-700 rounded-full overflow-hidden">
             <div id="loading-bar" class="h-full bg-white transition-all duration-[5000ms] ease-in-out" style="width: 0%;"></div>
         </div>
@@ -736,7 +741,7 @@
             </ul>
             
             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-white">
+            <button id="mobile-menu-btn" class="md:hidden text-white" aria-label="Open menu">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
@@ -752,6 +757,7 @@
         </div>
     </header>
 
+<main>
     <!-- Hero Section with Carousel -->
     <section id="hero-section" class="hero-carousel">
         <!-- Slides will be dynamically generated here -->
@@ -766,12 +772,12 @@
             <div class="flex items-center justify-between mb-8">
                 <h2 class="text-xl md:text-2xl font-serif">Categories</h2>
                 <div class="flex space-x-4">
-                    <button id="prev-category" class="text-gray-400 hover:text-gray-900 transition-colors">
+                    <button id="prev-category" class="text-gray-400 hover:text-gray-900 transition-colors" aria-label="Previous category">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                         </svg>
                     </button>
-                    <button id="next-category" class="text-gray-400 hover:text-gray-900 transition-colors">
+                    <button id="next-category" class="text-gray-400 hover:text-gray-900 transition-colors" aria-label="Next category">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                         </svg>
@@ -781,42 +787,42 @@
             <div id="category-carousel" class="flex space-x-6 overflow-x-scroll scrolling-container pb-4">
                 <!-- Category Card 1 -->
                 <a href="#rings" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/a71801de50c36ed8887abb0108ffb3e62ce1b432/The%20Frecia%20Ring.jpg" alt="Rings" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Men%27s+Rings'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/a71801de50c36ed8887abb0108ffb3e62ce1b432/The%20Frecia%20Ring.jpg" alt="Rings" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Men%27s+Rings'">
                     <h3 class="font-medium text-lg">Rings</h3>
                 </a>
                 <!-- Category Card 2 -->
                 <a href="#necklaces" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/ed31d4388671e40ceb2ab6dd8da70aa95d37cf6c/The%20Flutter%20And%20Floral%20Kids%20Necklace__.webp" alt="Necklaces" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Necklaces'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/ed31d4388671e40ceb2ab6dd8da70aa95d37cf6c/The%20Flutter%20And%20Floral%20Kids%20Necklace__.webp" alt="Necklaces" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Necklaces'">
                     <h3 class="font-medium text-lg">Necklaces</h3>
                 </a>
                 <!-- Category Card 3 -->
                 <a href="#gold-coins" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/fb243249c47cf5ab7c559812004515ff14b57e94/10%20gram%2024%20KT%20Lakshmi%20Gold%20Coin__.webp" alt="Gold Coins" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Gold+Coins'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/fb243249c47cf5ab7c559812004515ff14b57e94/10%20gram%2024%20KT%20Lakshmi%20Gold%20Coin__.webp" alt="Gold Coins" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Gold+Coins'">
                     <h3 class="font-medium text-lg">Gold Coins</h3>
                 </a>
                 <!-- Category Card 4 -->
                 <a href="#anklets" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/11655094dd1f0d20f30fe276d42c4e43406d0a52/The%20Hygge%20Anklet.webp" alt="Anklets" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Anklets'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/11655094dd1f0d20f30fe276d42c4e43406d0a52/The%20Hygge%20Anklet.webp" alt="Anklets" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Anklets'">
                     <h3 class="font-medium text-lg">Anklets</h3>
                 </a>
                 <!-- Category Card 5 -->
                 <a href="#gold-chains" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/d66d998e5bd5c311c02ff342c5ba63222ed38361/The%20Beridze%20Gold%20Chain%20For%20Him.webp" alt="Gold Chains" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Gold+Chains'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/d66d998e5bd5c311c02ff342c5ba63222ed38361/The%20Beridze%20Gold%20Chain%20For%20Him.webp" alt="Gold Chains" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Gold+Chains'">
                     <h3 class="font-medium text-lg">Gold Chains</h3>
                 </a>
                 <!-- Category Card 6 -->
                 <a href="#mangal-sutra" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/1f6acfc04c443790279e97a5be8a01cc05c56485/The%20Koyna%20Evil%20Eye%20Mangalsutra__.webp" alt="Mangalsutra" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Mangalsutra'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/1f6acfc04c443790279e97a5be8a01cc05c56485/The%20Koyna%20Evil%20Eye%20Mangalsutra__.webp" alt="Mangalsutra" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Mangalsutra'">
                     <h3 class="font-medium text-lg">Mangalsutra</h3>
                 </a>
                 <!-- Category Card 7 -->
                 <a href="#bracelets" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/914ca34bf47a1b204b6f0cf6a00bbb9be10f401b/The%20Adalin%20Bracelet__.webp" alt="Bracelets" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Female+Bracelets'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/914ca34bf47a1b204b6f0cf6a00bbb9be10f401b/The%20Adalin%20Bracelet__.webp" alt="Bracelets" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Female+Bracelets'">
                     <h3 class="font-medium text-lg">Bracelets</h3>
                 </a>
                 <!-- Category Card 8 -->
                 <a href="#watch-ornaments" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/0f1ecb20eb24f5d00ddd2454862f8cb2334b5520/The%20Cloe%20Mutliwearable%20Watch%20Band__.webp" alt="Watch Ornaments" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Watch+Ornaments'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/0f1ecb20eb24f5d00ddd2454862f8cb2334b5520/The%20Cloe%20Mutliwearable%20Watch%20Band__.webp" alt="Watch Ornaments" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Watch+Ornaments'">
                     <h3 class="font-medium text-lg">Watch Ornaments</h3>
                 </a>
             </div>
@@ -828,22 +834,22 @@
         <div class="relative overflow-hidden w-full h-full">
             <div id="banner-carousel-container" class="banner-carousel-container">
                 <div class="banner-slide">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/65c81eeab1c451e52d4db0dd00323be214dbae2a/17584205564092.jpg" alt="Bold Gold" class="w-full h-full" onerror="this.src='https://placehold.co/1080x720/e3e0dc/424242?text=Bold+Gold+Collection'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/65c81eeab1c451e52d4db0dd00323be214dbae2a/17584205564092.jpg" alt="Bold Gold Collection banner" loading="lazy" class="w-full h-full" onerror="this.src='https://placehold.co/1080x720/e3e0dc/424242?text=Bold+Gold+Collection'">
                 </div>
                 <div class="banner-slide">
-                     <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/a1c70a4bd4e04001a21651006d9ffcc1329409e6/1758420627281.jpg" alt="Checkmate Collection" class="w-full h-full" onerror="this.src='https://placehold.co/1080x720/e3e0dc/424242?text=Checkmate+Collection'">
+                     <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/a1c70a4bd4e04001a21651006d9ffcc1329409e6/1758420627281.jpg" alt="Checkmate Collection banner" loading="lazy" class="w-full h-full" onerror="this.src='https://placehold.co/1080x720/e3e0dc/424242?text=Checkmate+Collection'">
                 </div>
                  <div class="banner-slide">
-                     <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/a1c70a4bd4e04001a21651006d9ffcc1329409e6/1758420661837.jpg" alt="Barbie Collection" class="w-full h-full" onerror="this.src='https://placehold.co/1080x720/e3e0dc/424242?text=Barbie+Collection'">
+                     <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/a1c70a4bd4e04001a21651006d9ffcc1329409e6/1758420661837.jpg" alt="Barbie Collection banner" loading="lazy" class="w-full h-full" onerror="this.src='https://placehold.co/1080x720/e3e0dc/424242?text=Barbie+Collection'">
                 </div>
             </div>
             <!-- Manual navigation arrows -->
-            <button id="prev-banner" class="banner-arrow prev">
+            <button id="prev-banner" class="banner-arrow prev" aria-label="Previous banner">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
             </button>
-            <button id="next-banner" class="banner-arrow next">
+            <button id="next-banner" class="banner-arrow next" aria-label="Next banner">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
@@ -867,9 +873,9 @@
                 </div>
                 <!-- Updated Image Layout for About Us Section -->
                 <div class="about-us-images">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-517237166-612x612.jpg" alt="A family shopping for jewelry" class="rounded-lg shadow-lg w-full" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Family+Shopping'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-691898268-612x612.jpg" alt="A craftsman working on jewelry" class="rounded-lg shadow-lg w-full" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Craftsman'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-1427466115-612x612.jpg" alt="A woman wearing a necklace" class="rounded-lg shadow-lg w-full" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Woman+Wearing+Jewelry'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-517237166-612x612.jpg" alt="A family shopping for jewelry" loading="lazy" class="rounded-lg shadow-lg w-full" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Family+Shopping'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-691898268-612x612.jpg" alt="A craftsman working on jewelry" loading="lazy" class="rounded-lg shadow-lg w-full" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Craftsman'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-1427466115-612x612.jpg" alt="A woman wearing a necklace" loading="lazy" class="rounded-lg shadow-lg w-full" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Woman+Wearing+Jewelry'">
                 </div>
             </div>
             <div class="flex justify-center mt-8">
@@ -1487,8 +1493,8 @@
             <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Get the best diamonds for your business</h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/30fe52448b82f8ca978ad2e74d762510cfd7f2ba/diamond%20jwellry.jpg" alt="A collection of elegant diamond jewelry on display" class="w-full md:w-1/2 h-auto rounded-lg shadow-lg" onerror="this.src='https://placehold.co/600x800/262626/ffffff?text=Diamond+Jewelry'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/30fe52448b82f8ca978ad2e74d762510cfd7f2ba/istockphoto-136508442-612x612.jpg" alt="A close-up shot of a diamond ring" class="w-full md:w-1/2 h-auto rounded-lg shadow-lg" onerror="this.src='https://placehold.co/600x800/262626/ffffff?text=Diamond+Ring'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/30fe52448b82f8ca978ad2e74d762510cfd7f2ba/diamond%20jwellry.jpg" alt="A collection of elegant diamond jewelry on display" loading="lazy" class="w-full md:w-1/2 h-auto rounded-lg shadow-lg" onerror="this.src='https://placehold.co/600x800/262626/ffffff?text=Diamond+Jewelry'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/30fe52448b82f8ca978ad2e74d762510cfd7f2ba/istockphoto-136508442-612x612.jpg" alt="A close-up shot of a diamond ring" loading="lazy" class="w-full md:w-1/2 h-auto rounded-lg shadow-lg" onerror="this.src='https://placehold.co/600x800/262626/ffffff?text=Diamond+Ring'">
                 </div>
                 <div class="text-center lg:text-left space-y-6">
                     <p class="text-sm md:text-base leading-relaxed max-w-lg mx-auto lg:mx-0">
@@ -1508,10 +1514,10 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <!-- New Image Grid for Legacy Section -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-1311987356-612x612.jpg" alt="Woman's hand wearing a delicate gold bracelet" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+1'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-1318824089-612x612.jpg" alt="Couple's hands with wedding rings" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+2'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-2148666112-640x640.jpg" alt="A hand with an elegant diamond ring" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+3'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-617896650-612x612.jpg" alt="Jewelry craftsman working at a bench" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+4'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-1311987356-612x612.jpg" alt="Woman's hand wearing a delicate gold bracelet" loading="lazy" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+1'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-1318824089-612x612.jpg" alt="Couple's hands with wedding rings" loading="lazy" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+2'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-2148666112-640x640.jpg" alt="A hand with an elegant diamond ring" loading="lazy" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+3'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-617896650-612x612.jpg" alt="Jewelry craftsman working at a bench" loading="lazy" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+4'">
                 </div>
                 <div class="text-center lg:text-left space-y-6">
                     <h2 class="text-2xl md:text-3xl font-serif">Crafting Jewellery Since 1929</h2>
@@ -1531,14 +1537,14 @@
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-2xl md:text-3xl font-serif mb-8">Follow Us</h2>
             <div class="flex justify-center mb-8">
-                <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/78d3cb4ee98540625034a11f5e6de6937ceb0549/Gemini_Generated_Image_v4q54kv4q54kv4q5%20(1).png" alt="Instagram Collage" class="w-full h-auto rounded-lg hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/1200x400/262626/ffffff?text=Follow+Us'">
+                <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/78d3cb4ee98540625034a11f5e6de6937ceb0549/Gemini_Generated_Image_v4q54kv4q54kv4q5%20(1).png" alt="Collage of jewelry images for social media" loading="lazy" class="w-full h-auto rounded-lg hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/1200x400/262626/ffffff?text=Follow+Us'">
             </div>
             <div class="flex justify-center space-x-6">
                 <!-- Placeholder for social icons -->
-                <a href="#" class="text-gray-900 hover:text-stone-500 transition-colors">
+                <a href="#" class="text-gray-900 hover:text-stone-500 transition-colors" aria-label="Instagram">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.013 4.858.072 1.25.06 1.905.253 2.535.549.63.296 1.154.704 1.677 1.227.523.523.931 1.047 1.227 1.677.296.63.489 1.285.549 2.535.059 1.274.072 1.654.072 4.858s-.013 3.584-.072 4.858c-.06 1.25-.253 1.905-.549 2.535-.296.63-.704 1.154-1.227 1.677-.523.523-.931 1.047-1.677 1.227-.63.296-1.285.489-2.535.549-1.274.059-1.654.072-4.858.072s-3.584-.013-4.858-.072c-1.25-.06-1.905-.253-2.535-.549-.296-.63-.704-1.154-1.677-1.227-.523-.523-.931-1.047-1.227-1.677-.296-.63-.489-1.285-.549-2.535-.059-1.274-.072-1.654-.072-4.858s.013-3.584.072-4.858c.06-1.25.253-1.905.549-2.535.296-.63.704-1.154 1.227-1.677.523-.523 1.047-.931 1.677-1.227.63-.296 1.285-.489 2.535-.549 1.274-.059 1.654-.072 4.858-.072zM12 9c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3z"></path></svg>
                 </a>
-                <a href="#" class="text-gray-900 hover:text-stone-500 transition-colors">
+                <a href="#" class="text-gray-900 hover:text-stone-500 transition-colors" aria-label="Pinterest">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12s5.373 12 12 12c6.627 0 12-5.373 12-12s-5.373-12-12-12zm2.016 16.598l-1.984-1.983c-1.579 1.96-3.832 3.256-6.248 3.553l-1.002-1.003c0.697-0.076 1.385-0.23 2.046-0.457-0.627-1.127-1.077-2.355-1.332-3.668-0.143-0.72-0.222-1.456-0.252-2.203-0.028-0.748-0.028-1.503 0.002-2.253 0.03-0.746 0.106-1.487 0.238-2.215l1.002-1.003c0.165 0.207 0.356 0.407 0.573 0.601 1.706-0.297 3.398-0.589 4.965-0.897l1.003 1.003c-1.285 0.252-2.583 0.505-3.882 0.755 0.592 1.488 1.545 2.809 2.858 3.916 1.312 1.108 2.915 1.868 4.607 2.214l-1.003 1.003c-1.567-0.301-3.076-0.906-4.542-1.802 0.588 1.488 1.545 2.809 2.858 3.916 1.312 1.108 2.915 1.868 4.607 2.214l-1.003 1.003c-1.567-0.301-3.076-0.906-4.542-1.802z"></path></svg>
                 </a>
             </div>
@@ -1634,6 +1640,7 @@
             </div>
         </div>
     </footer>
+</main>
 
     <!-- Modal for Dynamic Product Description -->
     <div id="productModal" class="modal">
@@ -1649,7 +1656,7 @@
         </div>
     </div>
     
-    <script>
+    <script defer>
         // JavaScript for mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -1713,18 +1720,28 @@
         let currentSlideIndex = 0;
         let slideInterval;
         let startX = 0;
+        let startY = 0;
         let isSwiping = false;
 
         // Swipe events for touch devices
         heroSection.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
             isSwiping = true;
         });
 
         heroSection.addEventListener('touchmove', (e) => {
             if (!isSwiping) return;
-            // Prevent vertical scrolling while swiping horizontally
-            e.preventDefault(); 
+            
+            const currentX = e.touches[0].clientX;
+            const currentY = e.touches[0].clientY;
+            const diffX = Math.abs(startX - currentX);
+            const diffY = Math.abs(startY - currentY);
+
+            // Only prevent default (scrolling) if the swipe is more horizontal than vertical
+            if (diffX > diffY) {
+                e.preventDefault();
+            }
         }, { passive: false });
 
         heroSection.addEventListener('touchend', (e) => {
@@ -2034,41 +2051,31 @@
         window.addEventListener('resize', updateBannerCarousel);
 
         // Initial page load logic
-        window.onload = function() {
-            // Loading bar animation
-            const loadingScreen = document.getElementById('loading-screen');
-            const loadingBar = document.getElementById('loading-bar');
-            
-            // Immediately start the loading bar animation
-            loadingBar.style.width = '100%';
+        const loadingScreen = document.getElementById('loading-screen');
+        const loadingBar = document.getElementById('loading-bar');
 
-            // Use transitionend to know when the loading bar animation is done
-            loadingBar.addEventListener('transitionend', () => {
-                // Fade out the loading screen
-                loadingScreen.classList.add('fade-out');
+        // Immediately start the loading bar animation
+        loadingBar.style.width = '100%';
 
-                // After the loading screen fades out, hide it and initialize the rest of the page
-                loadingScreen.addEventListener('transitionend', () => {
-                    loadingScreen.style.display = 'none';
-                    document.body.style.overflowY = 'auto'; // Enable scrolling after loading
-                    
-                    // Initialize the hero carousel after loading
-                    renderSlider();
-                    showSlide(currentSlideIndex);
-                    startAutoSlide();
+        window.addEventListener('load', () => {
+            // Fade out the loading screen once all content is loaded
+            loadingScreen.classList.add('fade-out');
 
-                    // Start the two-banner carousel
-                    updateBannerCarousel();
-                    startBannerAutoSlide();
-
-                    // Observe all sections for fade-in effect on scroll
-                    document.querySelectorAll('.fade-in-on-scroll').forEach(section => {
-                        fadeInObserver.observe(section);
-                    });
-
-                }, { once: true }); // Ensure this event listener only runs once
+            loadingScreen.addEventListener('transitionend', () => {
+                loadingScreen.style.display = 'none';
+                document.body.style.overflowY = 'auto'; // Enable scrolling
             }, { once: true });
-        };
+
+            // Initialize carousels and observers after the page is loaded
+            renderSlider();
+            showSlide(currentSlideIndex);
+            startAutoSlide();
+            updateBannerCarousel();
+            startBannerAutoSlide();
+            document.querySelectorAll('.fade-in-on-scroll').forEach(section => {
+                fadeInObserver.observe(section);
+            });
+        });
     </script>
 </body>
 </html>
