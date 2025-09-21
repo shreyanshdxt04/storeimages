@@ -14,11 +14,12 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            color: #1a1a1a;
-            background-color: #f5f5f5;
+            color: #333333; /* Darker gray for better contrast */
+            background-color: #fdfbf7; /* A warm, luxurious cream */
             overflow-x: hidden;
             margin: 0;
             padding: 0;
+            line-height: 1.6; /* Improved line spacing for readability */
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -38,7 +39,7 @@
 
         /* Silk background texture effect */
         .silk-texture-bg {
-            background-color: #0d0d0d;
+            background-color: #1a1a1a; /* A softer, deep charcoal instead of pure black */
         }
         
         /* Category Card Hover Effect */
@@ -50,16 +51,16 @@
         /* New Card Styling from Uiverse.io with modifications for color scheme */
         .card {
             --card-bg: #ffffff;
-            --card-accent: #1e293b; /* Adjusted to a darker tone */
-            --card-text: #1e293b;
-            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            --card-accent: #333333;
+            --card-text: #333333;
+            --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.07); /* Softer shadow */
             
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            width: 300px;
+            width: 310px; /* Slightly wider */
             height: 400px;
             background: var(--card-bg);
             border-radius: 20px;
@@ -67,8 +68,8 @@
             color: var(--card-text);
             cursor: pointer;
             overflow: hidden;
-            box-shadow: var(--card-shadow);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--card-shadow); 
+            border: 1px solid #f0f0f0; /* Subtle border */
             font-family: 'Inter', sans-serif;
             transition: 400ms;
         }
@@ -105,7 +106,7 @@
             inset: -10px;
             background: radial-gradient(
                 circle at 50% 0%,
-                rgba(0, 0, 0, 0.3) 0%, /* Changed glow from purple to black */
+                rgba(0, 0, 0, 0.2) 0%, /* Softer black glow */
                 rgba(0, 0, 0, 0) 70%
             );
             opacity: 0;
@@ -208,7 +209,7 @@
 
         .card__description {
             color: var(--card-text);
-            font-size: 0.75em;
+            font-size: 0.85em; /* Slightly larger for readability */
             opacity: 0.7;
             transition: all 0.3s ease;
         }
@@ -254,7 +255,7 @@
 
         .card:hover .card__button {
             transform: scale(1);
-            box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.2); /* Adjusted to black */
+            box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1); /* Softer shadow */
         }
 
         .card:hover .card__button svg {
@@ -291,7 +292,6 @@
         /* Uiverse.io Button Styles for Secondary CTA */
         .button {
             height: 50px;
-            width: 200px;
             position: relative; /* Added position:relative to fix hover issue */
             background-color: transparent;
             cursor: pointer;
@@ -303,12 +303,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 0 25px; /* Use padding for width */
         }
         
         .btn-txt {
             z-index: 1;
             font-weight: 600;
             letter-spacing: 1px;
+            white-space: nowrap; /* Prevent text from wrapping */
         }
         
         .type1::after {
@@ -569,6 +571,20 @@
             }
         }
 
+        /* Staggered animation for promise cards */
+        .promise-card {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .promise-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .promise-card.is-visible:nth-child(2) { transition-delay: 0.2s; }
+        .promise-card.is-visible:nth-child(3) { transition-delay: 0.4s; }
+
+
         /* Hero Carousel styles */
         .hero-carousel {
             position: relative;
@@ -606,7 +622,7 @@
         }
 
         .carousel-content h1 {
-            font-family: 'Playfair Display', serif;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Add subtle shadow for readability */
             font-weight: 300;
         }
         
@@ -655,12 +671,18 @@
         .banner-slide {
             flex-shrink: 0;
             width: 100%;
-            height: 100%;
+            height: 100%; /* Ensure slide takes full height */
             background-size: cover;
             background-position: center;
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden; /* Hide parts of the image that go outside the container */
+            position: relative; /* Needed for absolute positioning of the image */
+        }
+
+        .banner-slide img.parallax-image {
+            transition: transform 0.2s ease-out; /* Smooth transition for the parallax effect */
         }
 
         .banner-slide img {
@@ -713,7 +735,7 @@
         }
     </style>
 </head>
-<body class="bg-gray-100">
+<body>
 
     <!-- Loading Screen -->
     <div id="loading-screen" class="flex flex-col justify-center items-center fixed inset-0 z-[1000] bg-black transition-opacity duration-[5000ms]">
@@ -725,9 +747,9 @@
 
     <!-- Header -->
     <header id="header" class="fixed top-0 left-0 right-0 z-30 transition-all duration-300 transform translate-y-0 header-bg-transparent">
-        <nav class="container mx-auto flex items-center justify-between p-4">
+        <nav class="container mx-auto flex items-center justify-between p-3 md:p-4">
             <!-- Logo -->
-            <a href="#hero-section" class="text-3xl font-bold tracking-wider text-white">
+            <a href="#hero-section" class="text-2xl md:text-3xl font-bold tracking-wider text-white">
                 ANAND<span class="text-stone-300">SNEH</span>
             </a>
 
@@ -767,7 +789,7 @@
     </section>
 
     <!-- Category Slider -->
-    <section id="categories" class="py-20 bg-white fade-in-on-scroll">
+    <section id="categories" class="py-16 md:py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="flex items-center justify-between mb-8">
                 <h2 class="text-xl md:text-2xl font-serif">Categories</h2>
@@ -786,43 +808,43 @@
             </div>
             <div id="category-carousel" class="flex space-x-6 overflow-x-scroll scrolling-container pb-4">
                 <!-- Category Card 1 -->
-                <a href="#rings" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/a71801de50c36ed8887abb0108ffb3e62ce1b432/The%20Frecia%20Ring.jpg" alt="Rings" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Men%27s+Rings'">
+                <a href="#rings" class="flex-shrink-0 w-56 md:w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/a71801de50c36ed8887abb0108ffb3e62ce1b432/The%20Frecia%20Ring.jpg" alt="Rings" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Men%27s+Rings'">
                     <h3 class="font-medium text-lg">Rings</h3>
                 </a>
                 <!-- Category Card 2 -->
-                <a href="#necklaces" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/ed31d4388671e40ceb2ab6dd8da70aa95d37cf6c/The%20Flutter%20And%20Floral%20Kids%20Necklace__.webp" alt="Necklaces" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Necklaces'">
+                <a href="#necklaces" class="flex-shrink-0 w-56 md:w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/ed31d4388671e40ceb2ab6dd8da70aa95d37cf6c/The%20Flutter%20And%20Floral%20Kids%20Necklace__.webp" alt="Necklaces" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Necklaces'">
                     <h3 class="font-medium text-lg">Necklaces</h3>
                 </a>
                 <!-- Category Card 3 -->
-                <a href="#gold-coins" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/fb243249c47cf5ab7c559812004515ff14b57e94/10%20gram%2024%20KT%20Lakshmi%20Gold%20Coin__.webp" alt="Gold Coins" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Gold+Coins'">
+                <a href="#gold-coins" class="flex-shrink-0 w-56 md:w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/fb243249c47cf5ab7c559812004515ff14b57e94/10%20gram%2024%20KT%20Lakshmi%20Gold%20Coin__.webp" alt="Gold Coins" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Gold+Coins'">
                     <h3 class="font-medium text-lg">Gold Coins</h3>
                 </a>
                 <!-- Category Card 4 -->
-                <a href="#anklets" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/11655094dd1f0d20f30fe276d42c4e43406d0a52/The%20Hygge%20Anklet.webp" alt="Anklets" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Anklets'">
+                <a href="#anklets" class="flex-shrink-0 w-56 md:w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/11655094dd1f0d20f30fe276d42c4e43406d0a52/The%20Hygge%20Anklet.webp" alt="Anklets" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Anklets'">
                     <h3 class="font-medium text-lg">Anklets</h3>
                 </a>
                 <!-- Category Card 5 -->
-                <a href="#gold-chains" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/d66d998e5bd5c311c02ff342c5ba63222ed38361/The%20Beridze%20Gold%20Chain%20For%20Him.webp" alt="Gold Chains" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Gold+Chains'">
+                <a href="#gold-chains" class="flex-shrink-0 w-56 md:w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/d66d998e5bd5c311c02ff342c5ba63222ed38361/The%20Beridze%20Gold%20Chain%20For%20Him.webp" alt="Gold Chains" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Gold+Chains'">
                     <h3 class="font-medium text-lg">Gold Chains</h3>
                 </a>
                 <!-- Category Card 6 -->
-                <a href="#mangal-sutra" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/1f6acfc04c443790279e97a5be8a01cc05c56485/The%20Koyna%20Evil%20Eye%20Mangalsutra__.webp" alt="Mangalsutra" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Mangalsutra'">
+                <a href="#mangal-sutra" class="flex-shrink-0 w-56 md:w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/1f6acfc04c443790279e97a5be8a01cc05c56485/The%20Koyna%20Evil%20Eye%20Mangalsutra__.webp" alt="Mangalsutra" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Mangalsutra'">
                     <h3 class="font-medium text-lg">Mangalsutra</h3>
                 </a>
                 <!-- Category Card 7 -->
-                <a href="#bracelets" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/914ca34bf47a1b204b6f0cf6a00bbb9be10f401b/The%20Adalin%20Bracelet__.webp" alt="Bracelets" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Female+Bracelets'">
+                <a href="#bracelets" class="flex-shrink-0 w-56 md:w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/914ca34bf47a1b204b6f0cf6a00bbb9be10f401b/The%20Adalin%20Bracelet__.webp" alt="Bracelets" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Female+Bracelets'">
                     <h3 class="font-medium text-lg">Bracelets</h3>
                 </a>
                 <!-- Category Card 8 -->
-                <a href="#watch-ornaments" class="flex-shrink-0 w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/0f1ecb20eb24f5d00ddd2454862f8cb2334b5520/The%20Cloe%20Mutliwearable%20Watch%20Band__.webp" alt="Watch Ornaments" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Watch+Ornaments'">
+                <a href="#watch-ornaments" class="flex-shrink-0 w-56 md:w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/0f1ecb20eb24f5d00ddd2454862f8cb2334b5520/The%20Cloe%20Mutliwearable%20Watch%20Band__.webp" alt="Watch Ornaments" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Watch+Ornaments'">
                     <h3 class="font-medium text-lg">Watch Ornaments</h3>
                 </a>
             </div>
@@ -858,24 +880,24 @@
     </section>
 
     <!-- About Us Section -->
-    <section id="about-us" class="py-20 bg-white fade-in-on-scroll">
+    <section id="about-us" class="py-16 md:py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="text-center lg:text-left space-y-6">
-                    <h2 class="text-2xl md:text-3xl font-serif">About Us</h2>
+                    <h2 class="text-3xl md:text-4xl font-serif">About Us</h2>
                     <p class="text-sm md:text-base leading-relaxed max-w-lg mx-auto lg:mx-0">
                         Over 50 years ago, Anandsneh Jewellers began with a simple dream - not just to sell jewellery, but to become a part of people's lives. Founded on the principles of purity, trust, and tradition, our jewels have adorned countless families across generations. From a mother's blessings to a bride's first step into her new life, every jewel we craft carries a story, an emotion, and a promise. Today, even after five decades, our values remain unchanged - to deliver authenticity, elegance, and trust in every creation. Anandsneh Jewellers - Where every jewel tells a story of love and trust.
                     </p>
-                    <h3 class="text-xl md:text-2xl font-serif mt-12">Luxury Redefined</h3>
+                    <h3 class="text-2xl md:text-3xl font-serif mt-12">Luxury Redefined</h3>
                     <p class="text-sm md:text-base leading-relaxed max-w-lg mx-auto lg:mx-0">
                         At Anandsneh Jewellers, we believe jewellery should be a true reflection of personal style and elegance. Our luxurious, modern designs are a blend of high-quality craftsmanship and ethical sourcing, ensuring that each piece not only looks stunning but is also responsibly made. We pride ourselves on celebrating individuality while forming meaningful connections with our valued customers.
                     </p>
                 </div>
                 <!-- Updated Image Layout for About Us Section -->
                 <div class="about-us-images">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-517237166-612x612.jpg" alt="A family shopping for jewelry" loading="lazy" class="rounded-lg shadow-lg w-full" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Family+Shopping'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-691898268-612x612.jpg" alt="A craftsman working on jewelry" loading="lazy" class="rounded-lg shadow-lg w-full" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Craftsman'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-1427466115-612x612.jpg" alt="A woman wearing a necklace" loading="lazy" class="rounded-lg shadow-lg w-full" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Woman+Wearing+Jewelry'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-517237166-612x612.jpg" alt="A family shopping for jewelry" loading="lazy" class="rounded-lg shadow-lg w-full h-64 object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Family+Shopping'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-691898268-612x612.jpg" alt="A craftsman working on jewelry" loading="lazy" class="rounded-lg shadow-lg w-full h-64 object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Craftsman'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-1427466115-612x612.jpg" alt="A woman wearing a necklace" loading="lazy" class="rounded-lg shadow-lg w-full h-64 object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Woman+Wearing+Jewelry'">
                 </div>
             </div>
             <div class="flex justify-center mt-8">
@@ -887,19 +909,19 @@
     </section>
 
     <!-- The Anandsneh Promise Section -->
-    <section id="anandsneh-promise" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
+    <section id="anandsneh-promise" class="py-16 md:py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">The Anandsneh Promise</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
-                <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
+            <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">The Anandsneh Promise</h2>
+            <div id="promise-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+                <div class="promise-card bg-gray-800 p-8 rounded-lg shadow-lg">
                     <h3 class="text-xl font-serif mb-2">50+ Years of Legacy & Trust</h3>
                     <p class="text-sm text-gray-300">Decades of experience and a reputation built on honesty.</p>
                 </div>
-                <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
+                <div class="promise-card bg-gray-800 p-8 rounded-lg shadow-lg">
                     <h3 class="text-xl font-serif mb-2">100% Certified Purity</h3>
                     <p class="text-sm text-gray-300">BIS Hallmark & Certified Diamonds for your peace of mind.</p>
                 </div>
-                <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
+                <div class="promise-card bg-gray-800 p-8 rounded-lg shadow-lg">
                     <h3 class="text-xl font-serif mb-2">Elegant Designs</h3>
                     <p class="text-sm text-gray-300">Blending tradition with modernity for timeless appeal.</p>
                 </div>
@@ -908,16 +930,16 @@
     </section>
 
     <!-- Customer Testimonials Section -->
-    <section id="testimonials" class="py-20 bg-white fade-in-on-scroll">
+    <section id="testimonials" class="py-16 md:py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8 text-center">
-            <h2 class="text-2xl md:text-3xl font-serif mb-12">Trusted by Generations</h2>
+            <h2 class="text-3xl md:text-4xl font-serif mb-12">Trusted by Generations</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <div class="p-8 bg-gray-100 rounded-lg shadow-md">
-                    <p class="italic text-lg mb-4">"Our family has bought every wedding jewel from Anandsneh Jewellers. Their trust is unmatched."</p>
+                    <p class="italic text-base md:text-lg mb-4">"Our family has bought every wedding jewel from Anandsneh Jewellers. Their trust is unmatched."</p>
                     <p class="font-medium">- A Happy Customer</p>
                 </div>
                 <div class="p-8 bg-gray-100 rounded-lg shadow-md">
-                    <p class="italic text-lg mb-4">"For us, Anandsneh is not a shop, it is family. They have been part of our celebrations for decades."</p>
+                    <p class="italic text-base md:text-lg mb-4">"For us, Anandsneh is not a shop, it is family. They have been part of our celebrations for decades."</p>
                     <p class="font-medium">- Loyal Client</p>
                 </div>
             </div>
@@ -925,9 +947,9 @@
     </section>
 
     <!-- Rings Section -->
-    <section id="rings" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
+    <section id="rings" class="py-16 md:py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Rings</h2>
+            <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Rings</h2>
             <div class="flex justify-center">
                 <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Product Card 1 -->
@@ -995,9 +1017,9 @@
     </section>
 
     <!-- Necklaces Section -->
-    <section id="necklaces" class="py-20 bg-white fade-in-on-scroll">
+    <section id="necklaces" class="py-16 md:py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Necklaces</h2>
+            <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Necklaces</h2>
             <div class="flex justify-center">
                 <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Product Card 1 -->
@@ -1068,9 +1090,9 @@
     </section>
 
     <!-- Gold Coins Section -->
-    <section id="gold-coins" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
+    <section id="gold-coins" class="py-16 md:py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Gold Coins</h2>
+            <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Gold Coins</h2>
             <div class="flex justify-center">
                 <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Product Card 1 -->
@@ -1138,9 +1160,9 @@
     </section>
 
     <!-- Anklets Section -->
-    <section id="anklets" class="py-20 bg-white fade-in-on-scroll">
+    <section id="anklets" class="py-16 md:py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Anklets</h2>
+            <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Anklets</h2>
             <div class="flex justify-center">
                 <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Product Card 1 -->
@@ -1208,9 +1230,9 @@
     </section>
 
     <!-- Gold Chains Section -->
-    <section id="gold-chains" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
+    <section id="gold-chains" class="py-16 md:py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Gold Chains</h2>
+            <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Gold Chains</h2>
             <div class="flex justify-center">
                 <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Product Card 1 -->
@@ -1278,9 +1300,9 @@
     </section>
 
     <!-- Mangalsutra Section -->
-    <section id="mangal-sutra" class="py-20 bg-white fade-in-on-scroll">
+    <section id="mangal-sutra" class="py-16 md:py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Mangalsutra</h2>
+            <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Mangalsutra</h2>
             <div class="flex justify-center">
                 <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Product Card 1 -->
@@ -1348,9 +1370,9 @@
     </section>
 
     <!-- Bracelets Section -->
-    <section id="bracelets" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
+    <section id="bracelets" class="py-16 md:py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Bracelets</h2>
+            <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Bracelets</h2>
             <div class="flex justify-center">
                 <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Product Card 1 -->
@@ -1418,9 +1440,9 @@
     </section>
 
     <!-- Watch Ornaments Section -->
-    <section id="watch-ornaments" class="py-20 bg-white fade-in-on-scroll">
+    <section id="watch-ornaments" class="py-16 md:py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Watch Ornaments</h2>
+            <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Watch Ornaments</h2>
             <div class="flex justify-center">
                 <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Product Card 1 -->
@@ -1488,13 +1510,13 @@
     </section>
 
     <!-- Business Section -->
-    <section id="business-section" class="py-20 silk-texture-bg text-white fade-in-on-scroll">
+    <section id="business-section" class="py-16 md:py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-serif text-center mb-12">Get the best diamonds for your business</h2>
+            <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Get the best diamonds for your business</h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/30fe52448b82f8ca978ad2e74d762510cfd7f2ba/diamond%20jwellry.jpg" alt="A collection of elegant diamond jewelry on display" loading="lazy" class="w-full md:w-1/2 h-auto rounded-lg shadow-lg" onerror="this.src='https://placehold.co/600x800/262626/ffffff?text=Diamond+Jewelry'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/30fe52448b82f8ca978ad2e74d762510cfd7f2ba/istockphoto-136508442-612x612.jpg" alt="A close-up shot of a diamond ring" loading="lazy" class="w-full md:w-1/2 h-auto rounded-lg shadow-lg" onerror="this.src='https://placehold.co/600x800/262626/ffffff?text=Diamond+Ring'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/30fe52448b82f8ca978ad2e74d762510cfd7f2ba/diamond%20jwellry.jpg" alt="A collection of elegant diamond jewelry on display" loading="lazy" class="w-full md:w-1/2 h-auto rounded-lg shadow-lg transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/600x800/262626/ffffff?text=Diamond+Jewelry'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/30fe52448b82f8ca978ad2e74d762510cfd7f2ba/istockphoto-136508442-612x612.jpg" alt="A close-up shot of a diamond ring" loading="lazy" class="w-full md:w-1/2 h-auto rounded-lg shadow-lg transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/600x800/262626/ffffff?text=Diamond+Ring'">
                 </div>
                 <div class="text-center lg:text-left space-y-6">
                     <p class="text-sm md:text-base leading-relaxed max-w-lg mx-auto lg:mx-0">
@@ -1509,18 +1531,18 @@
     </section>
     
     <!-- About / Legacy Section -->
-    <section id="legacy-section" class="py-20 bg-white fade-in-on-scroll">
+    <section id="legacy-section" class="py-16 md:py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <!-- New Image Grid for Legacy Section -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-1311987356-612x612.jpg" alt="Woman's hand wearing a delicate gold bracelet" loading="lazy" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+1'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-1318824089-612x612.jpg" alt="Couple's hands with wedding rings" loading="lazy" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+2'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-2148666112-640x640.jpg" alt="A hand with an elegant diamond ring" loading="lazy" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+3'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-617896650-612x612.jpg" alt="Jewelry craftsman working at a bench" loading="lazy" class="rounded-lg shadow-lg" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+4'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-1311987356-612x612.jpg" alt="Woman's hand wearing a delicate gold bracelet" loading="lazy" class="rounded-lg shadow-lg w-full h-48 object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+1'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-1318824089-612x612.jpg" alt="Couple's hands with wedding rings" loading="lazy" class="rounded-lg shadow-lg w-full h-48 object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+2'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-2148666112-640x640.jpg" alt="A hand with an elegant diamond ring" loading="lazy" class="rounded-lg shadow-lg w-full h-48 object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+3'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-617896650-612x612.jpg" alt="Jewelry craftsman working at a bench" loading="lazy" class="rounded-lg shadow-lg w-full h-48 object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+4'">
                 </div>
                 <div class="text-center lg:text-left space-y-6">
-                    <h2 class="text-2xl md:text-3xl font-serif">Crafting Jewellery Since 1929</h2>
+                    <h2 class="text-3xl md:text-4xl font-serif">Crafting Jewellery for more than 50 years</h2>
                     <p class="text-sm md:text-base leading-relaxed max-w-lg mx-auto lg:mx-0">
                         For generations, our master craftsmen have dedicated themselves to the art of fine jewelry. We combine timeless traditions with modern design to create pieces that are not just beautiful, but are also heirlooms for the future.
                     </p>
@@ -1533,11 +1555,11 @@
     </section>
 
     <!-- Instagram / Pinterest Gallery -->
-    <section class="py-20 silk-texture-bg text-white text-center fade-in-on-scroll">
+    <section class="py-16 md:py-20 silk-texture-bg text-white text-center fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-serif mb-8">Follow Us</h2>
+            <h2 class="text-3xl md:text-4xl font-serif mb-8">Follow Us</h2>
             <div class="flex justify-center mb-8">
-                <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/78d3cb4ee98540625034a11f5e6de6937ceb0549/Gemini_Generated_Image_v4q54kv4q54kv4q5%20(1).png" alt="Collage of jewelry images for social media" loading="lazy" class="w-full h-auto rounded-lg hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/1200x400/262626/ffffff?text=Follow+Us'">
+                <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/78d3cb4ee98540625034a11f5e6de6937ceb0549/Gemini_Generated_Image_v4q54kv4q54kv4q5%20(1).png" alt="Collage of jewelry images for social media" loading="lazy" class="w-full h-auto rounded-lg transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/1200x400/262626/ffffff?text=Follow+Us'">
             </div>
             <div class="flex justify-center space-x-6">
                 <!-- Placeholder for social icons -->
@@ -1552,15 +1574,15 @@
     </section>
 
     <!-- Customization Section -->
-    <section id="customization" class="py-20 bg-white fade-in-on-scroll">
+    <section id="customization" class="py-16 md:py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-serif mb-4">✨ Customization & Naming</h2>
-            <p class="text-sm md:text-base mb-8">Looking for something truly unique? Our experts can help you craft the perfect piece.</p>
+            <h2 class="text-3xl md:text-4xl font-serif mb-4 text-center md:text-left">✨ Customization & Naming</h2>
+            <p class="text-sm md:text-base mb-8 text-center md:text-left">Looking for something truly unique? Our experts can help you craft the perfect piece.</p>
             <div class="flex flex-col md:flex-row justify-center items-center gap-6 w-full max-w-xl mx-auto">
-                <a href="https://wa.me/916307438787?text=I%20am%20interested%20in%20a%20custom%20jewelry%20piece.%20Can%20you%20help%20me%20design%20something%20special?" class="button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white">
+                <a href="https://wa.me/916307438787?text=I%20am%20interested%20in%20a%20custom%20jewelry%20piece.%20Can%20you%20help%20me%20design%20something%20special?" class="button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white w-full md:w-auto">
                     <div class="btn-txt">Contact for Customization</div>
                 </a>
-                <button id="show-name-generator-btn" class="button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white">
+                <button id="show-name-generator-btn" class="button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white w-full md:w-auto">
                     <div class="btn-txt">Generate Names</div>
                 </button>
             </div>
@@ -1580,9 +1602,9 @@
     </section>
 
     <!-- Contact Us Section -->
-    <section id="contact-us" class="py-20 bg-white fade-in-on-scroll">
+    <section id="contact-us" class="py-16 md:py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-serif mb-4 text-center">Experience 50 Years of Legacy</h2>
+            <h2 class="text-3xl md:text-4xl font-serif mb-4 text-center">Experience 50 Years of Legacy</h2>
             <p class="text-sm md:text-base mb-8 italic text-center">"Step into our world of purity and elegance. Visit Anandsneh Jewellers today."</p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="p-6 bg-gray-100 rounded-lg shadow-md">
@@ -1650,12 +1672,19 @@
             <div id="productModalContent" class="text-base text-black">
                 <div id="productLoadingSpinner" class="loading-spinner"></div>
             </div>
-            <a id="productWhatsappLink" href="#" class="mt-10 button type1 text-black text bg-gray-200 hover:bg-stone-500 hover:text-white mx-auto block w-fit">
+            <a id="productWhatsappLink" href="#" class="mt-10 button type1 text-black bg-gray-200 hover:bg-stone-500 hover:text-white mx-auto block w-fit">
                 <div class="btn-txt">Enquire on WhatsApp</div>
             </a>
         </div>
     </div>
     
+    <!-- Back to Top Button -->
+    <button id="back-to-top-btn" class="hidden fixed bottom-8 right-8 bg-black bg-opacity-50 text-white p-3 rounded-full shadow-lg hover:bg-opacity-75 transition-all duration-300 z-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
     <script defer>
         // JavaScript for mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -1668,8 +1697,17 @@
 
         // JavaScript for sticky header and auto-hide
         let lastScrollY = window.scrollY;
+        const backToTopBtn = document.getElementById('back-to-top-btn');
         
         window.addEventListener('scroll', () => {
+            // Show/hide back-to-top button
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.remove('hidden');
+            } else {
+                backToTopBtn.classList.add('hidden');
+            }
+
+            // Header logic
             if (window.scrollY > 50) {
                 header.classList.remove('header-bg-transparent');
                 header.classList.add('header-bg-blur');
@@ -1688,6 +1726,14 @@
                 header.classList.add('translate-y-0');
             }
             lastScrollY = window.scrollY;
+        });
+
+        // Back to top button click event
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
         
         // Data for the new hero carousel
@@ -1790,13 +1836,13 @@
                 contentEl.className = 'carousel-content p-6 lg:p-12 space-y-6 text-white max-w-4xl mx-auto';
                 contentEl.innerHTML = `
                     <h1 class="text-4xl md:text-6xl font-serif font-light tracking-wide">${slide.title}</h1>
-                    <p class="text-sm md:text-lg font-light max-w-2xl mx-auto">${slide.description}</p>
-                    <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 pt-4 relative z-20">
-                        <a href="${slide.button1.href}" class="${slide.button1.classes} scroll-to-link" style="pointer-events: auto;">
+                    <p class="text-base md:text-lg font-light max-w-2xl mx-auto">${slide.description}</p>
+                    <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 pt-4 relative z-20">
+                        <a href="${slide.button1.href}" class="${slide.button1.classes} scroll-to-link w-48 sm:w-auto" style="pointer-events: auto;">
                             ${slide.button1.text}
                             ${createStarSVGs()}
                         </a>
-                        <a href="${slide.button2.href}" class="${slide.button2.classes} scroll-to-link" style="pointer-events: auto;">
+                        <a href="${slide.button2.href}" class="${slide.button2.classes} scroll-to-link w-48 sm:w-auto" style="pointer-events: auto;">
                             <div class="btn-txt">${slide.button2.text}</div>
                         </a>
                     </div>
@@ -1841,11 +1887,26 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    fadeInObserver.unobserve(entry.target);
+                } else {
+                    // Fade out when not on screen
+                    entry.target.classList.remove('is-visible');
                 }
             });
         }, {
             threshold: 0.2 // Trigger when 20% of the element is visible
+        });
+
+        // Intersection Observer for promise cards
+        const promiseObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const cards = entry.target.querySelectorAll('.promise-card');
+                    cards.forEach(card => card.classList.add('is-visible'));
+                    promiseObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.5 // Trigger when 50% of the container is visible
         });
 
         // JavaScript for horizontal carousel scrolling
@@ -1975,7 +2036,7 @@
 
             const systemPrompt = "You are a creative jewelry designer. Your task is to generate five elegant and unique names for a new jewelry collection or product based on a set of keywords. Present the names as a simple, numbered list. Do not add any extra text or conversation.";
             const userQuery = `Generate 5 elegant product names for a jewelry piece based on these keywords: ${keywords}`;
-            const key = "AIzaSyDYst8nrPa1yyy6kU-egJtdsvf_aaBhyxw";
+            const key = "YOUR_API_KEY_HERE"; // Replace with your actual API key
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${key}`;
 
             const payload = {
@@ -2050,6 +2111,22 @@
         
         window.addEventListener('resize', updateBannerCarousel);
 
+        // Parallax effect for banner images
+        window.addEventListener('scroll', () => {
+            const bannerSection = document.getElementById('banner-section');
+            const rect = bannerSection.getBoundingClientRect();
+            const parallaxImages = bannerSection.querySelectorAll('.parallax-image');
+
+            // Check if the banner section is in the viewport
+            if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                // Calculate the scroll amount relative to the banner's position
+                const scrollAmount = (window.innerHeight - rect.top) * 0.2; // Adjust the 0.2 factor for more/less effect
+                parallaxImages.forEach(img => {
+                    img.style.transform = `translateY(${scrollAmount}px)`;
+                });
+            }
+        });
+
         // Initial page load logic
         const loadingScreen = document.getElementById('loading-screen');
         const loadingBar = document.getElementById('loading-bar');
@@ -2075,6 +2152,10 @@
             document.querySelectorAll('.fade-in-on-scroll').forEach(section => {
                 fadeInObserver.observe(section);
             });
+            const promiseContainer = document.getElementById('promise-cards-container');
+            if (promiseContainer) {
+                promiseObserver.observe(promiseContainer);
+            }
         });
     </script>
 </body>
