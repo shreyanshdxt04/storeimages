@@ -40,7 +40,11 @@
 
         /* Silk background texture effect */
         .silk-texture-bg {
-            background-color: #1a1a1a; /* A softer, deep charcoal instead of pure black */
+            background-image: url('https://raw.githubusercontent.com/shreyanshdxt04/storeimages/be43b77deb664b9a81fad6438c704210a4a9d1c7/1758764479228.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Creates a nice parallax effect */
+            position: relative; /* Needed for the overlay */
         }
         
         /* Category Card Hover Effect */
@@ -61,8 +65,8 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            width: 280px; /* Reduced width for mobile scroll */
-            height: 380px; /* Reduced height for mobile scroll */
+            width: 400px; /* Increased width to fill space better */
+            height: 460px; /* Reduced height for mobile scroll */
             background: var(--card-bg);
             border-radius: 0; /* Removed justify-content: center */
             position: relative;
@@ -70,7 +74,7 @@
             cursor: pointer;
             overflow: hidden;
             box-shadow: var(--card-shadow); 
-            border: 1px solid #f0f0f0; /* Subtle border */
+            border: 4px solid #f0f0f0; /* Subtle border */
             font-family: 'Inter', sans-serif;
             transition: 400ms; /* Added flex-shrink: 0 */
         }
@@ -152,7 +156,7 @@
 
         .card__image {
             width: 100%;
-            height: 180px; /* Reduced height for smaller cards */
+            height: 300px; /* Reduced height for smaller cards */
             background: linear-gradient(45deg, #a78bfa, #8b5cf6);
             border-radius: 0;
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -197,7 +201,7 @@
 
         .card__title {
             color: var(--card-text);
-            font-size: 1.1em;
+            font-size: 1.25em;
             font-weight: 700;
             transition: all 0.3s ease;
             font-family: 'Poppins', sans-serif;
@@ -292,7 +296,7 @@
 
         /* Uiverse.io Button Styles for Secondary CTA */
         .button {
-            height: 50px;
+            min-height: 56px; /* Increased height to match */
             position: relative; /* Added position:relative to fix hover issue */
             background-color: transparent;
             cursor: pointer;
@@ -304,7 +308,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 25px; /* Use padding for width */
+            padding: 1rem 1.5rem; /* Use padding for width */
         }
         
         .btn-txt {
@@ -342,9 +346,9 @@
         /* New button for Shop Now from dalbrechtmartin */
         .shop-now-button {
             position: relative;
-            padding: 20px 35px;
+            padding: 1rem 1.5rem;
             background: #ffffff;
-            font-size: 20px;
+            font-size: 1rem;
             font-weight: 600;
             color: #000000;
             box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.5); /* Adjusted to match glow effect */
@@ -355,8 +359,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 200px;
-            height: 50px;
+            min-height: 56px; /* Increased height */
+            text-align: center;
         }
 
         .shop-now-button:hover {
@@ -627,6 +631,33 @@
             font-weight: 300;
         }
         
+        /* Animation for hero text */
+        .carousel-content h1,
+        .carousel-content p,
+        .carousel-content .flex {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .carousel-slide.active .carousel-content h1 {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.4s; /* Staggered delay */
+        }
+
+        .carousel-slide.active .carousel-content p {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.6s; /* Staggered delay */
+        }
+
+        .carousel-slide.active .carousel-content .flex {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.8s; /* Staggered delay */
+        }
+
         .carousel-indicators {
             position: absolute;
             bottom: 2rem;
@@ -979,7 +1010,7 @@
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Rings</h2>
             <div class="flex overflow-x-auto scrolling-container md:justify-center md:overflow-visible pb-4">
-                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-12">
                     <!-- Product Card 1 -->
                     <div class="card" onclick="showProductDetails('The Frecia Ring')">
                         <div class="card__shine"></div>
@@ -1049,7 +1080,7 @@
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Necklaces</h2>
             <div class="flex overflow-x-auto scrolling-container md:justify-center md:overflow-visible pb-4">
-                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-12">
                     <!-- Product Card 1 -->
                     <div class="card" onclick="showProductDetails('The Flutter And Floral Kids Necklace')">
                         <div class="card__shine"></div>
@@ -1122,7 +1153,7 @@
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Gold Coins</h2>
             <div class="flex overflow-x-auto scrolling-container md:justify-center md:overflow-visible pb-4">
-                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-12">
                     <!-- Product Card 1 -->
                     <div class="card" onclick="showProductDetails('10 gram 24 KT Lakshmi Gold Coin')">
                         <div class="card__shine"></div>
@@ -1192,7 +1223,7 @@
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Anklets</h2>
             <div class="flex overflow-x-auto scrolling-container md:justify-center md:overflow-visible pb-4">
-                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-12">
                     <!-- Product Card 1 -->
                     <div class="card" onclick="showProductDetails('The Hygge Anklet')">
                         <div class="card__shine"></div>
@@ -1262,7 +1293,7 @@
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Gold Chains</h2>
             <div class="flex overflow-x-auto scrolling-container md:justify-center md:overflow-visible pb-4">
-                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-12">
                     <!-- Product Card 1 -->
                     <div class="card" onclick="showProductDetails('The Beridze Gold Chain For Him')">
                         <div class="card__shine"></div>
@@ -1332,7 +1363,7 @@
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Mangalsutra</h2>
             <div class="flex overflow-x-auto scrolling-container md:justify-center md:overflow-visible pb-4">
-                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-12">
                     <!-- Product Card 1 -->
                     <div class="card" onclick="showProductDetails('The Koyna Evil Eye Mangalsutra')">
                         <div class="card__shine"></div>
@@ -1402,7 +1433,7 @@
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Bracelets</h2>
             <div class="flex overflow-x-auto scrolling-container md:justify-center md:overflow-visible pb-4">
-                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-12">
                     <!-- Product Card 1 -->
                     <div class="card" onclick="showProductDetails('The Adalin Bracelet')">
                         <div class="card__shine"></div>
@@ -1472,7 +1503,7 @@
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Watch Ornaments</h2>
             <div class="flex overflow-x-auto scrolling-container md:justify-center md:overflow-visible pb-4">
-                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-12">
                     <!-- Product Card 1 -->
                     <div class="card" onclick="showProductDetails('The Cloe Mutliwearable Watch Band')">
                         <div class="card__shine"></div>
@@ -1753,6 +1784,14 @@
                 header.classList.add('translate-y-0');
             }
             lastScrollY = window.scrollY;
+
+            // Parallax effect for hero section
+            const activeHeroSlide = document.querySelector('#hero-section .carousel-slide.active');
+            if (activeHeroSlide) {
+                const scrollPosition = window.scrollY;
+                // Apply parallax from the center position
+                activeHeroSlide.style.backgroundPosition = `center calc(50% + ${scrollPosition * 0.3}px)`;
+            }
         });
 
         // Back to top button click event
@@ -1862,14 +1901,14 @@
                 const contentEl = document.createElement('div');
                 contentEl.className = 'carousel-content p-6 lg:p-12 space-y-6 text-white max-w-4xl mx-auto';
                 contentEl.innerHTML = `
-                    <h1 class="text-4xl md:text-6xl font-serif font-light tracking-wide">${slide.title}</h1>
-                    <p class="text-base md:text-lg font-light max-w-2xl mx-auto">${slide.description}</p>
+                    <h1 class="text-5xl md:text-6xl font-serif font-light tracking-wide">${slide.title}</h1>
+                    <p class="text-lg md:text-xl font-light max-w-2xl mx-auto">${slide.description}</p>
                     <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 pt-4 relative z-20">
-                        <a href="${slide.button1.href}" class="${slide.button1.classes} scroll-to-link w-48 sm:w-auto" style="pointer-events: auto;">
+                        <a href="${slide.button1.href}" class="${slide.button1.classes} scroll-to-link w-56 sm:w-auto" style="pointer-events: auto;">
                             ${slide.button1.text}
                             ${createStarSVGs()}
                         </a>
-                        <a href="${slide.button2.href}" class="${slide.button2.classes} scroll-to-link w-48 sm:w-auto" style="pointer-events: auto;">
+                        <a href="${slide.button2.href}" class="${slide.button2.classes} scroll-to-link w-56 sm:w-auto" style="pointer-events: auto;">
                             <div class="btn-txt">${slide.button2.text}</div>
                         </a>
                     </div>
@@ -1892,10 +1931,21 @@
         const dots = () => document.querySelectorAll('.indicator');
 
         const showSlide = (n) => {
-            slides().forEach(slide => slide.classList.remove('active'));
+            slides().forEach(slide => {
+                slide.classList.remove('active');
+            });
             dots().forEach(dot => dot.classList.remove('active'));
+
             currentSlideIndex = (n + slides().length) % slides().length;
-            slides()[currentSlideIndex].classList.add('active');
+            const activeSlide = slides()[currentSlideIndex];
+            
+            // The background image is already on the slide, we just need to make it active
+            activeSlide.classList.add('active');
+
+            // Parallax effect update
+            const scrollPosition = window.scrollY;
+            activeSlide.style.backgroundPosition = `center calc(50% + ${scrollPosition * 0.3}px)`;
+
             dots()[currentSlideIndex].classList.add('active');
         };
 
