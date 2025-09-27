@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1280">
     <title>Anandsneh Jewellers - A Legacy of Trust</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
     <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
     </noscript>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -23,7 +24,7 @@
         }
 
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         /* --- Custom Scrollbar for horizontal sections (Hidden) --- */
@@ -56,14 +57,14 @@
             --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.07); /* Softer shadow */
             
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* Changed from column to allow for smaller cards */
             align-items: center;
             justify-content: center;
             text-align: center;
-            width: 310px; /* Slightly wider */
-            height: 400px;
+            width: 280px; /* Reduced width for mobile scroll */
+            height: 380px; /* Reduced height for mobile scroll */
             background: var(--card-bg);
-            border-radius: 20px;
+            border-radius: 0; /* Removed justify-content: center */
             position: relative;
             color: var(--card-text);
             cursor: pointer;
@@ -71,7 +72,7 @@
             box-shadow: var(--card-shadow); 
             border: 1px solid #f0f0f0; /* Subtle border */
             font-family: 'Inter', sans-serif;
-            transition: 400ms;
+            transition: 400ms; /* Added flex-shrink: 0 */
         }
 
         .card:hover {
@@ -151,9 +152,9 @@
 
         .card__image {
             width: 100%;
-            height: 200px;
+            height: 180px; /* Reduced height for smaller cards */
             background: linear-gradient(45deg, #a78bfa, #8b5cf6);
-            border-radius: 12px;
+            border-radius: 0;
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
@@ -199,7 +200,7 @@
             font-size: 1.1em;
             font-weight: 700;
             transition: all 0.3s ease;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         .card:hover .card__title {
@@ -717,20 +718,29 @@
         }
         
         .about-us-images {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, auto);
             gap: 16px;
             align-items: center;
             justify-content: center;
         }
 
+        .about-us-images img:first-child {
+            grid-column: 1 / 2;
+            grid-row: 1 / 3;
+            align-self: center;
+            height: 100%;
+        }
+
         @media (min-width: 1024px) {
             .about-us-images {
-                display: grid;
                 grid-template-columns: repeat(3, 1fr);
-                gap: 16px;
-                align-items: center;
-                justify-content: center;
+                grid-template-rows: 1fr;
+            }
+            .about-us-images img:first-child {
+                grid-column: auto;
+                grid-row: auto;
             }
         }
     </style>
@@ -809,42 +819,42 @@
             <div id="category-carousel" class="flex space-x-6 overflow-x-scroll scrolling-container pb-4">
                 <!-- Category Card 1 -->
                 <a href="#rings" class="flex-shrink-0 w-56 md:w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/a71801de50c36ed8887abb0108ffb3e62ce1b432/The%20Frecia%20Ring.jpg" alt="Rings" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Men%27s+Rings'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/a71801de50c36ed8887abb0108ffb3e62ce1b432/The%20Frecia%20Ring.jpg" alt="Rings" loading="lazy" class="w-full h-auto shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Men%27s+Rings'">
                     <h3 class="font-medium text-lg">Rings</h3>
                 </a>
                 <!-- Category Card 2 -->
                 <a href="#necklaces" class="flex-shrink-0 w-56 md:w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/ed31d4388671e40ceb2ab6dd8da70aa95d37cf6c/The%20Flutter%20And%20Floral%20Kids%20Necklace__.webp" alt="Necklaces" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Necklaces'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/ed31d4388671e40ceb2ab6dd8da70aa95d37cf6c/The%20Flutter%20And%20Floral%20Kids%20Necklace__.webp" alt="Necklaces" loading="lazy" class="w-full h-auto shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Necklaces'">
                     <h3 class="font-medium text-lg">Necklaces</h3>
                 </a>
                 <!-- Category Card 3 -->
                 <a href="#gold-coins" class="flex-shrink-0 w-56 md:w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/fb243249c47cf5ab7c559812004515ff14b57e94/10%20gram%2024%20KT%20Lakshmi%20Gold%20Coin__.webp" alt="Gold Coins" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Gold+Coins'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/fb243249c47cf5ab7c559812004515ff14b57e94/10%20gram%2024%20KT%20Lakshmi%20Gold%20Coin__.webp" alt="Gold Coins" loading="lazy" class="w-full h-auto shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Gold+Coins'">
                     <h3 class="font-medium text-lg">Gold Coins</h3>
                 </a>
                 <!-- Category Card 4 -->
                 <a href="#anklets" class="flex-shrink-0 w-56 md:w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/11655094dd1f0d20f30fe276d42c4e43406d0a52/The%20Hygge%20Anklet.webp" alt="Anklets" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Anklets'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/11655094dd1f0d20f30fe276d42c4e43406d0a52/The%20Hygge%20Anklet.webp" alt="Anklets" loading="lazy" class="w-full h-auto shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover-scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Anklets'">
                     <h3 class="font-medium text-lg">Anklets</h3>
                 </a>
                 <!-- Category Card 5 -->
                 <a href="#gold-chains" class="flex-shrink-0 w-56 md:w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/d66d998e5bd5c311c02ff342c5ba63222ed38361/The%20Beridze%20Gold%20Chain%20For%20Him.webp" alt="Gold Chains" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Gold+Chains'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/d66d998e5bd5c311c02ff342c5ba63222ed38361/The%20Beridze%20Gold%20Chain%20For%20Him.webp" alt="Gold Chains" loading="lazy" class="w-full h-auto shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Gold+Chains'">
                     <h3 class="font-medium text-lg">Gold Chains</h3>
                 </a>
                 <!-- Category Card 6 -->
                 <a href="#mangal-sutra" class="flex-shrink-0 w-56 md:w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/1f6acfc04c443790279e97a5be8a01cc05c56485/The%20Koyna%20Evil%20Eye%20Mangalsutra__.webp" alt="Mangalsutra" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Mangalsutra'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/1f6acfc04c443790279e97a5be8a01cc05c56485/The%20Koyna%20Evil%20Eye%20Mangalsutra__.webp" alt="Mangalsutra" loading="lazy" class="w-full h-auto shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Mangalsutra'">
                     <h3 class="font-medium text-lg">Mangalsutra</h3>
                 </a>
                 <!-- Category Card 7 -->
                 <a href="#bracelets" class="flex-shrink-0 w-56 md:w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/914ca34bf47a1b204b6f0cf6a00bbb9be10f401b/The%20Adalin%20Bracelet__.webp" alt="Bracelets" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Female+Bracelets'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/914ca34bf47a1b204b6f0cf6a00bbb9be10f401b/The%20Adalin%20Bracelet__.webp" alt="Bracelets" loading="lazy" class="w-full h-auto shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Female+Bracelets'">
                     <h3 class="font-medium text-lg">Bracelets</h3>
                 </a>
                 <!-- Category Card 8 -->
                 <a href="#watch-ornaments" class="flex-shrink-0 w-56 md:w-64 text-center group transition-transform duration-300 hover:scale-105 category-card">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/0f1ecb20eb24f5d00ddd2454862f8cb2334b5520/The%20Cloe%20Mutliwearable%20Watch%20Band__.webp" alt="Watch Ornaments" loading="lazy" class="w-full h-auto rounded-lg shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Watch+Ornaments'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/0f1ecb20eb24f5d00ddd2454862f8cb2334b5520/The%20Cloe%20Mutliwearable%20Watch%20Band__.webp" alt="Watch Ornaments" loading="lazy" class="w-full h-auto shadow-md mb-2 transition-transform duration-300 group-hover:shadow-xl group-hover:scale-105" onerror="this.src='https://placehold.co/256x256/262626/ffffff?text=Watch+Ornaments'">
                     <h3 class="font-medium text-lg">Watch Ornaments</h3>
                 </a>
             </div>
@@ -895,9 +905,9 @@
                 </div>
                 <!-- Updated Image Layout for About Us Section -->
                 <div class="about-us-images">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-517237166-612x612.jpg" alt="A family shopping for jewelry" loading="lazy" class="rounded-lg shadow-lg w-full h-64 object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Family+Shopping'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-691898268-612x612.jpg" alt="A craftsman working on jewelry" loading="lazy" class="rounded-lg shadow-lg w-full h-64 object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Craftsman'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-1427466115-612x612.jpg" alt="A woman wearing a necklace" loading="lazy" class="rounded-lg shadow-lg w-full h-64 object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Woman+Wearing+Jewelry'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-517237166-612x612.jpg" alt="A family shopping for jewelry" loading="lazy" class="shadow-lg w-full h-full object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Family+Shopping'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-691898268-612x612.jpg" alt="A craftsman working on jewelry" loading="lazy" class="shadow-lg w-full h-64 object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Craftsman'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/Anandsneh-Jewellers/74fa4b55ea279581af6bd0f5deac5b3592b98521/istockphoto-1427466115-612x612.jpg" alt="A woman wearing a necklace" loading="lazy" class="shadow-lg w-full h-64 object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Woman+Wearing+Jewelry'">
                 </div>
             </div>
             <div class="flex justify-center mt-8">
@@ -912,18 +922,36 @@
     <section id="anandsneh-promise" class="py-16 md:py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">The Anandsneh Promise</h2>
-            <div id="promise-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
-                <div class="promise-card bg-gray-800 p-8 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-serif mb-2">50+ Years of Legacy & Trust</h3>
-                    <p class="text-sm text-gray-300">Decades of experience and a reputation built on honesty.</p>
+            <div id="promise-cards-container" class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <!-- Legacy & Trust Card -->
+                <div class="promise-card bg-black/20 backdrop-blur-sm border border-white/10 p-8 rounded-xl shadow-lg transition-all duration-300 hover:border-white/20 hover:bg-black/30 hover:-translate-y-2">
+                    <div class="flex justify-center items-center mb-4">
+                        <svg class="w-12 h-12 text-stone-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.008h-.008v-.008z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-serif mb-2 text-stone-100">50+ Years of Legacy & Trust</h3>
+                    <p class="text-sm text-stone-300">Decades of experience and a reputation built on honesty.</p>
                 </div>
-                <div class="promise-card bg-gray-800 p-8 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-serif mb-2">100% Certified Purity</h3>
-                    <p class="text-sm text-gray-300">BIS Hallmark & Certified Diamonds for your peace of mind.</p>
+                <!-- Certified Purity Card -->
+                <div class="promise-card bg-black/20 backdrop-blur-sm border border-white/10 p-8 rounded-xl shadow-lg transition-all duration-300 hover:border-white/20 hover:bg-black/30 hover:-translate-y-2">
+                    <div class="flex justify-center items-center mb-4">
+                        <svg class="w-12 h-12 text-stone-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-serif mb-2 text-stone-100">100% Certified Purity</h3>
+                    <p class="text-sm text-stone-300">BIS Hallmark & Certified Diamonds for your peace of mind.</p>
                 </div>
-                <div class="promise-card bg-gray-800 p-8 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-serif mb-2">Elegant Designs</h3>
-                    <p class="text-sm text-gray-300">Blending tradition with modernity for timeless appeal.</p>
+                <!-- Elegant Designs Card -->
+                <div class="promise-card bg-black/20 backdrop-blur-sm border border-white/10 p-8 rounded-xl shadow-lg transition-all duration-300 hover:border-white/20 hover:bg-black/30 hover:-translate-y-2">
+                    <div class="flex justify-center items-center mb-4">
+                        <svg class="w-12 h-12 text-stone-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-serif mb-2 text-stone-100">Elegant Designs</h3>
+                    <p class="text-sm text-stone-300">Blending tradition with modernity for timeless appeal.</p>
                 </div>
             </div>
         </div>
@@ -950,8 +978,8 @@
     <section id="rings" class="py-16 md:py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Rings</h2>
-            <div class="flex justify-center">
-                <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="flex overflow-x-auto scrolling-container md:justify-center md:overflow-visible pb-4">
+                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Product Card 1 -->
                     <div class="card" onclick="showProductDetails('The Frecia Ring')">
                         <div class="card__shine"></div>
@@ -1020,8 +1048,8 @@
     <section id="necklaces" class="py-16 md:py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Necklaces</h2>
-            <div class="flex justify-center">
-                <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="flex overflow-x-auto scrolling-container md:justify-center md:overflow-visible pb-4">
+                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Product Card 1 -->
                     <div class="card" onclick="showProductDetails('The Flutter And Floral Kids Necklace')">
                         <div class="card__shine"></div>
@@ -1093,8 +1121,8 @@
     <section id="gold-coins" class="py-16 md:py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Gold Coins</h2>
-            <div class="flex justify-center">
-                <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="flex overflow-x-auto scrolling-container md:justify-center md:overflow-visible pb-4">
+                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Product Card 1 -->
                     <div class="card" onclick="showProductDetails('10 gram 24 KT Lakshmi Gold Coin')">
                         <div class="card__shine"></div>
@@ -1163,8 +1191,8 @@
     <section id="anklets" class="py-16 md:py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Anklets</h2>
-            <div class="flex justify-center">
-                <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="flex overflow-x-auto scrolling-container md:justify-center md:overflow-visible pb-4">
+                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Product Card 1 -->
                     <div class="card" onclick="showProductDetails('The Hygge Anklet')">
                         <div class="card__shine"></div>
@@ -1233,8 +1261,8 @@
     <section id="gold-chains" class="py-16 md:py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Gold Chains</h2>
-            <div class="flex justify-center">
-                <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="flex overflow-x-auto scrolling-container md:justify-center md:overflow-visible pb-4">
+                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Product Card 1 -->
                     <div class="card" onclick="showProductDetails('The Beridze Gold Chain For Him')">
                         <div class="card__shine"></div>
@@ -1303,8 +1331,8 @@
     <section id="mangal-sutra" class="py-16 md:py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Mangalsutra</h2>
-            <div class="flex justify-center">
-                <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="flex overflow-x-auto scrolling-container md:justify-center md:overflow-visible pb-4">
+                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Product Card 1 -->
                     <div class="card" onclick="showProductDetails('The Koyna Evil Eye Mangalsutra')">
                         <div class="card__shine"></div>
@@ -1373,8 +1401,8 @@
     <section id="bracelets" class="py-16 md:py-20 silk-texture-bg text-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Bracelets</h2>
-            <div class="flex justify-center">
-                <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="flex overflow-x-auto scrolling-container md:justify-center md:overflow-visible pb-4">
+                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Product Card 1 -->
                     <div class="card" onclick="showProductDetails('The Adalin Bracelet')">
                         <div class="card__shine"></div>
@@ -1443,8 +1471,8 @@
     <section id="watch-ornaments" class="py-16 md:py-20 bg-white fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
             <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Watch Ornaments</h2>
-            <div class="flex justify-center">
-                <div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="flex overflow-x-auto scrolling-container md:justify-center md:overflow-visible pb-4">
+                <div class="cards flex flex-nowrap md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Product Card 1 -->
                     <div class="card" onclick="showProductDetails('The Cloe Mutliwearable Watch Band')">
                         <div class="card__shine"></div>
@@ -1515,8 +1543,8 @@
             <h2 class="text-3xl md:text-4xl font-serif text-center mb-12">Get the best diamonds for your business</h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/30fe52448b82f8ca978ad2e74d762510cfd7f2ba/diamond%20jwellry.jpg" alt="A collection of elegant diamond jewelry on display" loading="lazy" class="w-full md:w-1/2 h-auto rounded-lg shadow-lg transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/600x800/262626/ffffff?text=Diamond+Jewelry'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/30fe52448b82f8ca978ad2e74d762510cfd7f2ba/istockphoto-136508442-612x612.jpg" alt="A close-up shot of a diamond ring" loading="lazy" class="w-full md:w-1/2 h-auto rounded-lg shadow-lg transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/600x800/262626/ffffff?text=Diamond+Ring'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/30fe52448b82f8ca978ad2e74d762510cfd7f2ba/diamond%20jwellry.jpg" alt="A collection of elegant diamond jewelry on display" loading="lazy" class="w-full md:w-1/2 h-auto shadow-lg transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/600x800/262626/ffffff?text=Diamond+Jewelry'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/30fe52448b82f8ca978ad2e74d762510cfd7f2ba/istockphoto-136508442-612x612.jpg" alt="A close-up shot of a diamond ring" loading="lazy" class="w-full md:w-1/2 h-auto shadow-lg transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/600x800/262626/ffffff?text=Diamond+Ring'">
                 </div>
                 <div class="text-center lg:text-left space-y-6">
                     <p class="text-sm md:text-base leading-relaxed max-w-lg mx-auto lg:mx-0">
@@ -1535,11 +1563,10 @@
         <div class="container mx-auto px-4 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <!-- New Image Grid for Legacy Section -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-1311987356-612x612.jpg" alt="Woman's hand wearing a delicate gold bracelet" loading="lazy" class="rounded-lg shadow-lg w-full h-48 object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+1'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-1318824089-612x612.jpg" alt="Couple's hands with wedding rings" loading="lazy" class="rounded-lg shadow-lg w-full h-48 object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+2'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-2148666112-640x640.jpg" alt="A hand with an elegant diamond ring" loading="lazy" class="rounded-lg shadow-lg w-full h-48 object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+3'">
-                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-617896650-612x612.jpg" alt="Jewelry craftsman working at a bench" loading="lazy" class="rounded-lg shadow-lg w-full h-48 object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+4'">
+                <div class="grid grid-cols-2 grid-rows-2 gap-4 h-96">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-1311987356-612x612.jpg" alt="Woman's hand wearing a delicate gold bracelet" loading="lazy" class="shadow-lg w-full h-full object-cover transition-transform duration-300 hover:scale-105 row-span-2" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+1'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-1318824089-612x612.jpg" alt="Couple's hands with wedding rings" loading="lazy" class="shadow-lg w-full h-full object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+2'">
+                    <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/526083a9449a971ff2229f8f28ed3c833664c709/istockphoto-2148666112-640x640.jpg" alt="A hand with an elegant diamond ring" loading="lazy" class="shadow-lg w-full h-full object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/612x612/262626/ffffff?text=Image+3'">
                 </div>
                 <div class="text-center lg:text-left space-y-6">
                     <h2 class="text-3xl md:text-4xl font-serif">Crafting Jewellery for more than 50 years</h2>
@@ -1557,9 +1584,9 @@
     <!-- Instagram / Pinterest Gallery -->
     <section class="py-16 md:py-20 silk-texture-bg text-white text-center fade-in-on-scroll">
         <div class="container mx-auto px-4 lg:px-8">
-            <h2 class="text-3xl md:text-4xl font-serif mb-8">Follow Us</h2>
+            <!-- <h2 class="text-3xl md:text-4xl font-serif mb-8">Follow Us</h2> -->
             <div class="flex justify-center mb-8">
-                <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/78d3cb4ee98540625034a11f5e6de6937ceb0549/Gemini_Generated_Image_v4q54kv4q54kv4q5%20(1).png" alt="Collage of jewelry images for social media" loading="lazy" class="w-full h-auto rounded-lg transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/1200x400/262626/ffffff?text=Follow+Us'">
+                <img src="https://raw.githubusercontent.com/shreyanshdxt04/storeimages/78d3cb4ee98540625034a11f5e6de6937ceb0549/Gemini_Generated_Image_v4q54kv4q54kv4q5%20(1).png" alt="Collage of jewelry images for social media" loading="lazy" class="w-full h-auto transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/1200x400/262626/ffffff?text=Follow+Us'">
             </div>
             <div class="flex justify-center space-x-6">
                 <!-- Placeholder for social icons -->
